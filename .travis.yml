@@ -1,11 +1,11 @@
 language: cpp
+dist: trusty
 compiler:
   - gcc
   - clang
 before_install:
-- yes "" | sudo apt-add-repository ppa:beineri/opt-qt551
-- sudo apt-get update -qq
-- sudo apt-get install qt-latest catch
+- sudo apt-get update
+- sudo apt-get install qt5-default qt5-qmake catch
 script:
 - qmake
 - make
