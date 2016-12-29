@@ -1,5 +1,5 @@
 # Set test apps
- SUBDIRS += \
+SUBDIRS += \
     mylib-test \
     otherlib-test
 
