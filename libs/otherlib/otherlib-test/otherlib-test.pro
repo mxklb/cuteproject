@@ -10,3 +10,8 @@ customLibs = ../otherlib
 
 # Load and link all libs
 include(../../loadlibs.pri)
+
+# Set catch include path
+!exists(/usr/include/catch.hpp) {
+    INCLUDEPATH += ../../
+}
