@@ -1,8 +1,14 @@
-# Common config for test execution
+# Common config for test executables
 # Usage: Just include this for test apps.
+TEMPLATE = app
 
 CONFIG += console
 CONFIG += c++14
+
+# Set catch include path
+!exists(/usr/include/catch.hpp) {
+    INCLUDEPATH += ../../
+}
 
 # Trigger execution of the test target
 win32: QMAKE_POST_LINK=$${TARGET}.exe
