@@ -13,7 +13,7 @@
 
 for(lib, customLibs) {
     !isEmpty(lib) {
-        #message("$${TARGET} loading lib $${lib}")
+        #message("$${TARGET} is loading $${lib}")
         LIBDIR = $$clean_path($$dirname(lib))
         LIBNAME = $$basename(lib)
         #message(LIBDIR $${LIBDIR})
@@ -23,22 +23,30 @@ for(lib, customLibs) {
         #message($${INCLUDEPATH})
 
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB
-        isEmpty(LIB_EXTENSION){
+        isEmpty(LIB_EXTENSION) {
             win32: LIB_EXTENSION = dll
             macx:  LIB_EXTENSION = dylib
             else:  LIB_EXTENSION = so
         }
         #message($${LIB_EXTENSION})
 
-        LIBS += -L$${LIBDIR}/ -l$${LIBNAME}
-        PRE_TARGETDEPS += $${LIBDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-
-        # This is for local unix linking executable started in terminal..
-        QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/$$LIBDIR\'"
+        macx {
+            LIBDIR = $$clean_path($$OUT_PWD/$${LIBDIR})
+            frameworks += $$files($${LIBDIR}/$${LIBNAME}.framework)
+            INCLUDEPATH += -F$${LIBDIR}
+            LIBS += -F$${LIBDIR}/ -framework $${LIBNAME}
+            PRE_TARGETDEPS += $${LIBDIR}/$${LIBNAME}.framework
+        }
+        else {
+            LIBS += -L$${LIBDIR}/ -l$${LIBNAME}
+            PRE_TARGETDEPS += $${LIBDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
+            QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/$$LIBDIR\'"
+        }
     }
 }
 
-#message( - linker = $${LIBS})
-#message( - includepath = $${INCLUDEPATH})
-#message( - pretargetdepends = $${PRE_TARGETDEPS})
-#message( - qmakeflags = $${QMAKE_LFLAGS})
+macx { # Deploy all frameworks to target bundle
+    APP_LIB_FILES.files = $$frameworks
+    APP_LIB_FILES.path = Contents/Frameworks/
+    QMAKE_BUNDLE_DATA += APP_LIB_FILES
+}

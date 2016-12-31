@@ -4,6 +4,7 @@
 CONFIG += console
 CONFIG += c++14
 
-# Trigger execute of the test target
-unix:QMAKE_POST_LINK=./$$TARGET>&2
-win32:QMAKE_POST_LINK=$${TARGET}.exe
+# Trigger execution of the test target
+win32: QMAKE_POST_LINK=$${TARGET}.exe
+macx:  QMAKE_POST_LINK=$$OUT_PWD/$${TARGET}.app/Contents/MacOS/$${TARGET}>&2
+else:  QMAKE_POST_LINK=./$$TARGET>&2

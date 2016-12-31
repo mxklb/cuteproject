@@ -1,2 +1,5 @@
 *~
 *.user
+.DS_Store
+.qmake.stash
+Makefile

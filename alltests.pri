@@ -1,4 +1,4 @@
-# Set test apps
+# Register tests to run
 SUBDIRS += \
     mylib-test \
     otherlib-test
