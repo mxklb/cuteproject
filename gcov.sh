@@ -8,6 +8,6 @@ do
   filedir=$(dirname "${filepath}")
   echo $filedir/$cppfile 
   cd $(dirname "$filedir/$cppfile")
-  gcov -r -n -o . $cppfile 
+  gcov -r -n -o . $cppfile > /dev/null;
   cd $execdir
 done
