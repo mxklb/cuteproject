@@ -2,7 +2,7 @@
 #include "catch.hpp"
 #include "myclass.h"
 
-TEST_CASE( "MyMath", "[mymath]" ) {
+TEST_CASE( "MyMath", "[addition]" ) {
     SECTION("Addition") {
         MyClass my;
         REQUIRE(my.addition(3,4) == 7);

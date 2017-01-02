@@ -2,10 +2,10 @@
 #include "catch.hpp"
 #include "otherclass.h"
 
-TEST_CASE( "MyMath", "[mymath]" ) {
+TEST_CASE( "MyMath", "[subtraction]" ) {
     SECTION("Subtraction") {
         OtherClass my;
         REQUIRE((float)my.subtraction(5.5,4.4) == (float)1.1);
-        REQUIRE(my.subtraction(5,4) == 1);
+        //REQUIRE(my.subtraction(5,4) == 1);
     }
 }
