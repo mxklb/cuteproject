@@ -16,7 +16,7 @@ before_install:
 script:
 - qmake
 - make
-- chmod +x libs/codecov.sh
-- libs/codecov.sh
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then chmod +x libs/codecov.sh ; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then libs/codecov.sh ; fi
 after_success:
   - bash <(curl -s https://codecov.io/bash)
