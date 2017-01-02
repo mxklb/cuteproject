@@ -18,4 +18,4 @@ script:
 - make
 after_success:
   - ls -la
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -g /usr/include/
