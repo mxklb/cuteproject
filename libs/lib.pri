@@ -7,7 +7,7 @@ CONFIG -= qt
 
 macx: include($$PWD/osx.pri)
 
-catchTests {
+unix:!macx:catchTests {
     QMAKE_CXXFLAGS += -coverage
     QMAKE_LFLAGS += -lgcov --coverage
 }

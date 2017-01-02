@@ -15,5 +15,7 @@ win32: QMAKE_POST_LINK=$${TARGET}.exe
 macx:  QMAKE_POST_LINK=$$OUT_PWD/$${TARGET}.app/Contents/MacOS/$${TARGET}>&2
 else:  QMAKE_POST_LINK=./$$TARGET>&2
 
-QMAKE_CXXFLAGS += -coverage
-QMAKE_LFLAGS += -lgcov --coverage
+unix:!macx: {
+    QMAKE_CXXFLAGS += -coverage
+    QMAKE_LFLAGS += -lgcov --coverage
+}
