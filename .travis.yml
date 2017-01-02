@@ -20,4 +20,4 @@ script:
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then chmod +x gcov.sh && ./gcov.sh ; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then codecov ; fi
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -p . -G .libs
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd "$TRAVIS_BUILD_DIR" && bash <(curl -s https://codecov.io/bash) ; fi
