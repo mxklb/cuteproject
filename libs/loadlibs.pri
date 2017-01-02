@@ -11,6 +11,8 @@
 # Note: include(loadlibs.pri) will setup all given custom libs ->
 # -> INCLUDEPATH, DEPENDPATH, LIBS, PRE_TARGETDEPS & QMAKE_LFLAGS.
 
+QMAKE_PROJECT_DEPTH = 0 # Forces absolute paths
+
 for(lib, customLibs) {
     !isEmpty(lib) {
         #message("$${TARGET} is loading $${lib}")
@@ -18,8 +20,8 @@ for(lib, customLibs) {
         LIBNAME = $$basename(lib)
         #message(LIBDIR $${LIBDIR})
 
-        INCLUDEPATH += $$LIBDIR/src
-        DEPENDPATH += $$LIBDIR/src
+        INCLUDEPATH += $$clean_path($$LIBDIR/src)
+        DEPENDPATH += $$clean_path($$LIBDIR/src)
         #message($${INCLUDEPATH})
 
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB
@@ -40,7 +42,7 @@ for(lib, customLibs) {
         else {
             LIBS += -L$${LIBDIR}/ -l$${LIBNAME}
             PRE_TARGETDEPS += $${LIBDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-            QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/$$LIBDIR\'"
+            QMAKE_LFLAGS += "-Wl,-rpath,$${LIBDIR}"
         }
     }
 }

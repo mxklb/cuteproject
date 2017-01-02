@@ -1,6 +1,6 @@
 TARGET = mylib
 
-SOURCES += ./src/myclass.cpp
-HEADERS += ./src/myclass.h
+SOURCES += $$PWD/src/myclass.cpp
+HEADERS += $$PWD/src/myclass.h
 
 include(../lib.pri)

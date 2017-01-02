@@ -4,11 +4,11 @@ TARGET = app
 CONFIG += console
 CONFIG -= qt
 
-SOURCES += main.cpp
+SOURCES += $$PWD/main.cpp
 
 # Set name of libs /path/to/lib/name
-customLibs = ../libs/mylib/mylib
-customLibs += ../libs/otherlib/otherlib
+customLibs = $$PWD/../libs/mylib/mylib
+customLibs += $$PWD/../libs/otherlib/otherlib
 
 # Load and link all custom libs
 include(../libs/loadlibs.pri)

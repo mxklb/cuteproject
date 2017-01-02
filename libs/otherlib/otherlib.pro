@@ -1,6 +1,6 @@
 TARGET = otherlib
 
-SOURCES += ./src/otherclass.cpp
-HEADERS += ./src/otherclass.h
+SOURCES += $$PWD/src/otherclass.cpp
+HEADERS += $$PWD/src/otherclass.h
 
 include(../lib.pri)
