@@ -6,8 +6,4 @@ CONFIG += console
 CONFIG -= qt
 
 macx: include($$PWD/osx.pri)
-
-unix:!macx:catchTests {
-    QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage
-    QMAKE_LFLAGS += -lgcov --coverage
-}
+unix:!macx { include($$PWD/gcov.pri) }
