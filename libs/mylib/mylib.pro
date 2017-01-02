@@ -1,5 +1,7 @@
 TARGET = mylib
-SOURCES += src/myclass.cpp
-HEADERS += src/myclass.h
+
+VPATH += ./src
+SOURCES += myclass.cpp
+HEADERS += myclass.h
 
 include(../lib.pri)
