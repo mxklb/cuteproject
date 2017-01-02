@@ -17,7 +17,7 @@ before_install:
 script:
   - qmake
   - make
-#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then chmod +x gcov.sh && ./gcov.sh ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then chmod +x gcov.sh && ./gcov.sh ; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then codecov ; fi
 after_success:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd "$TRAVIS_BUILD_DIR" && bash <(curl -s https://codecov.io/bash) ; fi

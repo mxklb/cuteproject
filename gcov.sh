@@ -1,6 +1,6 @@
 #!/bin/bash
 execdir=${PWD}
-for filepath in `ls -d $(find .) | egrep '\.gcno'`; 
+for filepath in `ls -d $(find .) | egrep '\.gcda'`; 
 do 
   cppfile=${filepath##*/}
   cppfile=${cppfile::-4}
@@ -8,6 +8,6 @@ do
   filedir=$(dirname "${filepath}")
   echo $filedir/$cppfile 
   cd $(dirname "$filedir/$cppfile")
-  gcov -r -n -o . $cppfile > /dev/null;
+  #gcov -r -n -o . $cppfile > /dev/null;
   cd $execdir
 done
