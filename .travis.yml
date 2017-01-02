@@ -16,5 +16,6 @@ before_install:
 script:
 - qmake
 - make
+- ./codecov.sh
 after_success:
   - bash <(curl -s https://codecov.io/bash)
