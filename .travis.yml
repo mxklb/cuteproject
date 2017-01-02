@@ -2,10 +2,8 @@ language: cpp
 os:
   - linux
   - osx
-   
 sudo: required
 dist: trusty  
-
 compiler:
   - gcc
   - clang
@@ -18,3 +16,5 @@ before_install:
 script:
 - qmake
 - make
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
