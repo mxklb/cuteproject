@@ -16,7 +16,7 @@ before_install:
 script:
 - qmake
 - make
-- chmod+x gcov.sh && ./gcov.sh
+- chmod +x gcov.sh && ./gcov.sh
 after_success:
   - curl -s https://codecov.io/bash > .codecov && chmod +x .codecov
   - ./.codecov -G "$TRAVIS_BUILD_DIR/*"
