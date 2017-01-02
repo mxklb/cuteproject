@@ -17,4 +17,5 @@ script:
 - qmake
 - make
 after_success:
+  - ls -la
   - bash <(curl -s https://codecov.io/bash)
