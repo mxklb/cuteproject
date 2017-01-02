@@ -1,5 +1,12 @@
 #!/bin/bash
-for filename in `find . | egrep '\.cpp'`; 
+execdir=${PWD}
+for filepath in `find . | egrep '\.gcno'`; 
 do 
-  gcov -n -o . $filename > /dev/null; 
+  cppfile=${filepath##*/}
+  cppfile=${cppfile::-4}
+  cppfile=$cppfile"cpp"
+  filedir=$(dirname "${filepath}")
+  cd $filedir
+  gcov -n -o . $cppfile > /dev/null; 
+  cd $execdir
 done
