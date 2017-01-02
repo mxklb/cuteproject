@@ -1,0 +1,4 @@
+coverage:
+  ignore:
+    - "/usr/include/*"
+    - libs/catch.hpp
