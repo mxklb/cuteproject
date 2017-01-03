@@ -15,10 +15,9 @@ QMAKE_PROJECT_DEPTH = 0 # Forces absolute paths
 
 for(lib, customLibs) {
     !isEmpty(lib) {
-        #message("$${TARGET} is loading $${lib}")
         LIBDIR = $$clean_path($$dirname(lib))
         LIBNAME = $$basename(lib)
-        #message(LIBDIR $${LIBDIR})
+        #message("$${TARGET} is loading $$LIBNAME -> from: $$LIBDIR")
 
         INCLUDEPATH += $$clean_path($$LIBDIR/src)
         DEPENDPATH += $$clean_path($$LIBDIR/src)
@@ -32,17 +31,19 @@ for(lib, customLibs) {
         }
         #message($${LIB_EXTENSION})
 
+        # Get dynamic lib binary directory
+        OUTDIR = $$clean_path($$OUT_PWD/$${LIBDIR})
+
         macx {
-            LIBDIR = $$clean_path($$OUT_PWD/$${LIBDIR})
-            frameworks += $$files($${LIBDIR}/$${LIBNAME}.framework)
+            frameworks += $$files($${OUTDIR}/$${LIBNAME}.framework)
+            LIBS += -F$${OUTDIR}/ -framework $${LIBNAME}
+            PRE_TARGETDEPS += $${OUTDIR}/$${LIBNAME}.framework
             INCLUDEPATH += -F$${LIBDIR}
-            LIBS += -F$${LIBDIR}/ -framework $${LIBNAME}
-            PRE_TARGETDEPS += $${LIBDIR}/$${LIBNAME}.framework
         }
         else {
-            LIBS += -L$${LIBDIR}/ -l$${LIBNAME}
-            PRE_TARGETDEPS += $${LIBDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-            QMAKE_LFLAGS += "-Wl,-rpath,$${LIBDIR}"
+            LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
+            PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
+            QMAKE_LFLAGS += "-Wl,-rpath,\'$$LIBDIR\'"
         }
     }
 }
