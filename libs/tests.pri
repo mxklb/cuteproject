@@ -10,7 +10,7 @@ CONFIG += c++14
     INCLUDEPATH += ../../
 }
 
-unix:!macx { include($$PWD/gcov.pri) }
+include($$PWD/gcov.pri)
 
 # Trigger execution of the test target
 win32: QMAKE_POST_LINK=$${TARGET}.exe

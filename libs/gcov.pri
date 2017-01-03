@@ -1,5 +1,7 @@
 # Include this to get code coverage from gcov
-unix:!macx {
-    QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage
-    QMAKE_LFLAGS += -lgcov --coverage
+CONFIG(debug, debug|release) {
+    unix:!macx {
+        QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
+        QMAKE_LFLAGS += -lgcov --coverage
+    }
 }

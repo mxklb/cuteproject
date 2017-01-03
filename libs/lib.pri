@@ -5,5 +5,5 @@ TEMPLATE = lib
 CONFIG += console
 CONFIG -= qt
 
-macx: include($$PWD/osx.pri)
-unix:!macx { include($$PWD/gcov.pri) }
+include($$PWD/osx.pri)
+include($$PWD/gcov.pri)
