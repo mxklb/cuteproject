@@ -5,6 +5,7 @@ CONFIG += console
 CONFIG -= qt
 
 SOURCES += main.cpp
+SRC_DIR = $$PWD
 
 # Set name of libs /path/to/lib/name
 customLibs = ../libs/mylib/mylib

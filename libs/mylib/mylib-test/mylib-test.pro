@@ -1,5 +1,6 @@
 TARGET = mylib-test
 SOURCES += main.cpp
+SRC_DIR = $$PWD
 
 include(../../tests.pri)
 

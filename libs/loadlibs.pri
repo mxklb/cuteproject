@@ -19,8 +19,8 @@ for(lib, customLibs) {
         LIBNAME = $$basename(lib)
         #message("$${TARGET} is loading $$LIBNAME -> from: $$LIBDIR")
 
-        INCLUDEPATH += $$clean_path($$LIBDIR/src)
-        DEPENDPATH += $$clean_path($$LIBDIR/src)
+        INCLUDEPATH += $$clean_path($$SRC_DIR/$$LIBDIR/src)
+        DEPENDPATH += $$clean_path($$SRC_DIR/$$LIBDIR/src)
         #message($${INCLUDEPATH})
 
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB
