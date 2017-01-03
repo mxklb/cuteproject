@@ -1,6 +1,5 @@
 TEMPLATE = subdirs
 #CONFIG += ordered
-CONFIG += catchTests
 
 include(common.pri)
 
@@ -19,4 +18,7 @@ otherlib.subdir = libs/otherlib
 app.depends = mylib otherlib
 
 # -- Include all test projects
-catchTests { include(alltests.pri) }
+contains(catchTests, true) {
+    message(Building source including tests ($$catchTests))
+    include(alltests.pri)
+}
