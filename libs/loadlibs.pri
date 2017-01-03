@@ -1,10 +1,13 @@
 # Load this from any subproject to link shared libs properly and easy.
 #
 # Takes a list of paths of shared libs (customLibs). The used list must
-# contain 'path/to/lib/name's with path/to/lib relative to the caller (f.e):
+# contain 'path/to/lib/name's with path/to/lib relative to the caller.
 #
-# customLibs = ../path/to/lib/mylib ../other/path/to/otherlib
-# include(loadlibs.pri)
+# Note: The variable SRC_DIR must be set by the caller to its $PWD.
+#
+# Example:
+# - customLibs = ../path/to/lib/mylib ../other/path/to/otherlib
+# - include(loadlibs.pri)
 #
 # SOURCE and HEADER files must be in each ../path/to/lib/src folder!
 #
@@ -43,7 +46,7 @@ for(lib, customLibs) {
         else {
             LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
             PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-            QMAKE_LFLAGS += "-Wl,-rpath,\'$$LIBDIR\'"
+            QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
         }
     }
 }
