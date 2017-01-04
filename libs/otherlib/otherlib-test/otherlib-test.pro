@@ -2,10 +2,10 @@ TARGET = otherlib-test
 SOURCES += main.cpp
 SRC_DIR = $$PWD
 
-include(../../tests.pri)
+include($$PROJECT_DIR/libs/tests.pri)
 
 # Set name of libs /path/to/lib/name
 customLibs = ../otherlib
 
 # Load and link all libs
-include(../../loadlibs.pri)
+include($$PROJECT_DIR/libs/loadlibs.pri)

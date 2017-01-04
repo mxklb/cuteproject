@@ -1,8 +1,6 @@
 TEMPLATE = subdirs
 #CONFIG += ordered
 
-include(common.pri)
-
 # Sub modules
 SUBDIRS = \
     mylib \
@@ -19,6 +17,10 @@ app.depends = mylib otherlib
 
 # -- Include all test projects
 contains(catchTests, true) {
-    message(Building source including tests ($$catchTests))
+    CONFIG(debug, debug|release) {
+        message(Debug build with tests detected!)
+    } else {
+        message(Release build with tests deteced!)
+    }
     include(alltests.pri)
 }

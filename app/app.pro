@@ -14,4 +14,4 @@ customLibs = ../libs/mylib/mylib
 customLibs += ../libs/otherlib/otherlib
 
 # Load and link these custom libs
-include(../libs/loadlibs.pri)
+include($$PROJECT_DIR/libs/loadlibs.pri)
