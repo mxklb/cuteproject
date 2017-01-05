@@ -10,7 +10,7 @@ This aims to be a template/example qmake project with automated unit tests integ
 ## Build Dependencies
 To succesfully build on Ubuntu (trusty): 
 
-    sudo apt-get install qt5-default qt5-qmake catch
+    sudo apt-get install qt5-default qt5-qmake
     
 To succesfully build on OSX:
     
@@ -22,3 +22,5 @@ To succesfully build on OSX:
 
     qmake
     make
+
+*Note:* Use ```qmake -r CONFIG+=debug``` for debug builds. 
