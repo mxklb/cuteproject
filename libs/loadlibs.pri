@@ -3,13 +3,9 @@
 # Takes a list of paths of shared libs (customLibs). The used list must
 # contain 'path/to/lib/name's with path/to/lib relative to the caller.
 #
-# Note: The variable SRC_DIR must be set by the caller to its $PWD.
-#
 # Example:
 # - customLibs = ../path/to/lib/mylib ../other/path/to/otherlib
 # - include(loadlibs.pri)
-#
-# SOURCE and HEADER files must be in each ../path/to/lib/src folder!
 #
 # Note: include(loadlibs.pri) will setup all given custom libs ->
 # -> INCLUDEPATH, DEPENDPATH, LIBS, PRE_TARGETDEPS & QMAKE_LFLAGS.
@@ -18,12 +14,14 @@ QMAKE_PROJECT_DEPTH = 0 # Forces absolute paths
 
 for(lib, customLibs) {
     !isEmpty(lib) {
-        LIBDIR = $$clean_path($$dirname(lib))
+        LIBDIR = $$dirname(lib)
         LIBNAME = $$basename(lib)
         #message("$${TARGET} is loading $$LIBNAME -> from: $$LIBDIR")
 
-        INCLUDEPATH += $$clean_path($$SRC_DIR/$$LIBDIR/src)
-        DEPENDPATH += $$clean_path($$SRC_DIR/$$LIBDIR/src)
+        # TODO: Get libs source - header include path from lib HEADERS / SOURCES?
+        # --> Actually this is hard-coded here to be $$LIBDIR/src
+        INCLUDEPATH += $$clean_path($$_PRO_FILE_PWD_/$$LIBDIR/src)
+        DEPENDPATH += $$clean_path($$_PRO_FILE_PWD_/$$LIBDIR/src)
         #message($${INCLUDEPATH})
 
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB

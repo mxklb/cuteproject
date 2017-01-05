@@ -1,6 +1,5 @@
 TARGET = otherlib-test
 SOURCES += main.cpp
-SRC_DIR = $$PWD
 
 include($$PROJECT_DIR/libs/test.pri)
 
