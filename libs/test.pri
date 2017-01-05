@@ -6,7 +6,9 @@ CONFIG += console
 CONFIG += c++14
 
 # Set catch header include path
-INCLUDEPATH += $$PROJECT_DIR/libs/catch
+!exists(/usr/include/catch.hpp) {
+    INCLUDEPATH += $$PROJECT_DIR/libs/catch
+}
 
 include($$PWD/gcov.pri)
 
