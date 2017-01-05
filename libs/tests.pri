@@ -5,10 +5,8 @@ TEMPLATE = app
 CONFIG += console
 CONFIG += c++14
 
-# Set catch include path
-!exists(/usr/include/catch.hpp) {
-    INCLUDEPATH += ../../
-}
+# Set catch header include path
+INCLUDEPATH += $$PROJECT_DIR/libs/catch
 
 include($$PWD/gcov.pri)
 
