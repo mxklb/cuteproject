@@ -11,7 +11,7 @@ include($$PWD/osx.pri)
 include($$PWD/coverage.pri)
 
 # Create TARGET.pri file
-libPriFile = $$_PRO_FILE_PWD_/.$${TARGET}.pri
+libPriFile = $$_PRO_FILE_PWD_/$${TARGET}.pri
 
 # Prepare for distclean
 QMAKE_DISTCLEAN += $$libPriFile

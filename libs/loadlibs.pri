@@ -19,8 +19,8 @@ for(lib, customLibs) {
         #message("$${TARGET} is loading $$LIBNAME -> from: $$LIBDIR")
 
         # Load lib.pri to set INCLUDEPATH & DEPENDPATH
-        exists($$_PRO_FILE_PWD_/$$LIBDIR/.$$LIBNAME.pri) {
-            include($$_PRO_FILE_PWD_/$$LIBDIR/.$${LIBNAME}.pri)
+        exists($$_PRO_FILE_PWD_/$$LIBDIR/$$LIBNAME.pri) {
+            include($$_PRO_FILE_PWD_/$$LIBDIR/$${LIBNAME}.pri)
         }
         #message($${INCLUDEPATH})
 
