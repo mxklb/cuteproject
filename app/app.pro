@@ -6,7 +6,7 @@ CONFIG -= qt
 
 SOURCES += main.cpp
 
-# Set name of libs ../rel/path/to/lib/name
+# Relative path to libs
 customLibs = ../libs/mylib/mylib
 customLibs += ../libs/otherlib/otherlib
 

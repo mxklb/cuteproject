@@ -3,9 +3,9 @@
 [![Build Status](https://travis-ci.org/mxklb/cuteproject.svg?branch=master)](https://travis-ci.org/mxklb/cuteproject)
 [![codecov](https://codecov.io/gh/mxklb/cuteproject/branch/master/graph/badge.svg)](https://codecov.io/gh/mxklb/cuteproject)
 
-A simple qmake subdirs project with libs and tests. 
+A simple qmake subdirs project for writing C++ apps based on libs with tests & coverage. 
 
-This aims to be a template/example qmake project with automated unit tests integration (using [catch](https://github.com/philsquared/Catch)). Tests are implememted in separated executabels/subdirs which get executed during compilation incrementally .. compilation fails if a test fails ..
+This aims to be a example/template qmake project with automated unit tests integration (using [catch](https://github.com/philsquared/Catch)). Tests are implememted in separated executabels/subdirs which get executed during compilation incrementally .. compilation fails if any test fails .. 
 
 ## Build Dependencies
 To succesfully build on Ubuntu (trusty): 
@@ -22,5 +22,3 @@ To succesfully build on OSX:
 
     qmake
     make
-
-*Note:* Use ```qmake -r CONFIG+=debug``` for debug builds. 
