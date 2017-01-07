@@ -17,10 +17,10 @@ app.depends = mylib otherlib
 
 # -- Include all test projects
 contains(catchTests, true) {
+    include(alltests.pri)
     CONFIG(debug, debug|release) {
         message(Debug build with tests detected!)
     } else {
         message(Release build with tests deteced!)
     }
-    include(alltests.pri)
 }
