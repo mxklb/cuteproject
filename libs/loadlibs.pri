@@ -18,10 +18,10 @@ for(lib, customLibs) {
         LIBNAME = $$basename(lib)
         #message("$${TARGET} is loading $$LIBNAME -> from: $$LIBDIR")
 
-        # TODO: Get libs source - header include path from lib HEADERS / SOURCES?
-        # --> Actually this is hard-coded here to be $$LIBDIR/src
-        INCLUDEPATH += $$clean_path($$_PRO_FILE_PWD_/$$LIBDIR/src)
-        DEPENDPATH += $$clean_path($$_PRO_FILE_PWD_/$$LIBDIR/src)
+        # Load lib.pri to set INCLUDEPATH & DEPENDPATH
+        exists($$_PRO_FILE_PWD_/$$LIBDIR/.$$LIBNAME.pri) {
+            include($$_PRO_FILE_PWD_/$$LIBDIR/.$${LIBNAME}.pri)
+        }
         #message($${INCLUDEPATH})
 
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB

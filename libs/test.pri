@@ -5,12 +5,12 @@ TEMPLATE = app
 CONFIG += console
 CONFIG += c++14
 
+include($$PWD/coverage.pri)
+
 # Set catch header include path
 !exists(/usr/include/catch.hpp) {
     INCLUDEPATH += $$PROJECT_DIR/libs/catch
 }
-
-include($$PWD/gcov.pri)
 
 # Trigger execution of the test target
 win32: QMAKE_POST_LINK=$${TARGET}.exe
