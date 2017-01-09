@@ -1,10 +1,10 @@
-#ifndef OTHERCLASS_H
-#define OTHERCLASS_H
+#ifndef OTHERLIB_H
+#define OTHERLIB_H
 
-class OtherClass {
+class OtherLib {
 public:
     double subtraction(double a, double b);
     int subtraction(int a, int b);
 };
 
-#endif // MYCLASS_H
+#endif // OTHERLIB_H

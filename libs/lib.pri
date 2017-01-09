@@ -1,6 +1,6 @@
-# Common template used by all custom libs.
+# Common template used by all custom subdir libs.
 # Creates a TARGET.pri with depend- and includepath
-# to be used later on during lib load loadlibs.pri!
+# to be used later on during loadlibs.pri include!
 # Note: Use this after declaring HEADERS & SOURCE!
 TEMPLATE = lib
 
@@ -10,15 +10,29 @@ CONFIG -= qt
 include($$PWD/osx.pri)
 include($$PWD/coverage.pri)
 
-# Create TARGET.pri file
+unix:!macx {
+    # Set install *.so path
+    libInstall.files += $$OUT_PWD/*.so
+    libInstall.files += $$OUT_PWD/*.so.*
+    libInstall.path = $$[QT_INSTALL_PREFIX]/lib
+    INSTALLS += libInstall
+
+    # Set install header *.h path
+    libHeaders.files += $$HEADERS
+    libHeaders.path = $$[QT_INSTALL_PREFIX]/include
+    INSTALLS += libHeaders
+}
+
+# ---->
+# Create a TARGET.pri file for loadlibs.pri
 libPriFile = $$_PRO_FILE_PWD_/$${TARGET}.pri
 
 # Prepare for distclean
 QMAKE_DISTCLEAN += $$libPriFile
 
 system(touch $${libPriFile})
-system(echo "INCLUDEPATH+=\\$\\$PWD" > $${libPriFile})
-system(echo "DEPENDPATH+=\\$\\$PWD" >> $${libPriFile})
+system(echo "23" | xxd -p -r > $${libPriFile})
+system(echo "Generated: Do not edit!" >> $${libPriFile})
 
 # Add all headers path
 for(header, HEADERS) {
