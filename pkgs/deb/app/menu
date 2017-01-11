@@ -1,0 +1,4 @@
+?package(app-1.0-0):needs="x11" \
+      section="Applications/Sound" \
+      title="Cute Project" \
+      command="/usr/bin/app"

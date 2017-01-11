@@ -11,7 +11,7 @@ customLibs = ../libs/mylib/mylib
 customLibs += ../libs/otherlib/otherlib
 
 # Load and link these custom libs
-include($$PROJECT_DIR/libs/loadlibs.pri)
+include(../libs/loadlibs.pri)
 
 unix:!macx {
     target.files += $$OUT_PWD/$$TARGET

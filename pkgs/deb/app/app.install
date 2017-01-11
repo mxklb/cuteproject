@@ -1,0 +1,5 @@
+app/app usr/bin
+libs/mylib/libmylib* usr/lib
+libs/otherlib/libotherlib* usr/lib
+img/cuteproject.svg usr/share/pixmaps
+cuteproject.desktop usr/share/applications

@@ -11,16 +11,10 @@ include($$PWD/osx.pri)
 include($$PWD/coverage.pri)
 
 unix:!macx {
-    # Set install *.so path
     libInstall.files += $$OUT_PWD/*.so
     libInstall.files += $$OUT_PWD/*.so.*
     libInstall.path = $$[QT_INSTALL_PREFIX]/lib
     INSTALLS += libInstall
-
-    # Set install header *.h path
-    libHeaders.files += $$HEADERS
-    libHeaders.path = $$[QT_INSTALL_PREFIX]/include
-    INSTALLS += libHeaders
 }
 
 # ---->

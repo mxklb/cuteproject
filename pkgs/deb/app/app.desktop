@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=M.m
+Type=Application
+Categories=Sound;Development;GTK;GNOME;
+Terminal=false
+Name="Cute Project App"
+Comment="A simple qmake test app"
+Icon=/usr/share/pixmaps/cuteproject.svg
+Exec=/usr/bin/app
+StartupNotify=true
+Encoding=UTF-8
+
+Name[en_US]=app
