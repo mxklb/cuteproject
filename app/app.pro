@@ -2,9 +2,15 @@ TEMPLATE = app
 TARGET = app
 
 CONFIG += console
-CONFIG -= qt
+CONFIG += qt
+QT += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    form.cpp
+
+FORMS += form.ui
+HEADERS += form.h
 
 # Relative path to libs
 customLibs = ../libs/mylib/mylib

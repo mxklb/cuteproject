@@ -1,14 +1,10 @@
-#include <iostream>
-#include "mylib.h"
-#include "otherlib.h"
+#include <QApplication>
+#include "form.h"
 
-using namespace std;
-
-int main()
+int main(int argc, char *argv[])
 {
-    MyLib adder;
-    OtherLib subtr;
-    cout << adder.addition(10, 50) << endl;
-    cout << subtr.subtraction(50, 10) << endl;
-    return 0;
+    QApplication a(argc, argv);
+    Form w;
+    w.show();
+    return a.exec();
 }
