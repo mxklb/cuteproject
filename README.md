@@ -5,9 +5,11 @@
 [![build status](https://gitlab.com/mxklb/cuteproject/badges/master/build.svg)](https://gitlab.com/mxklb/cuteproject/commits/master)
 [![coverage report](https://gitlab.com/mxklb/cuteproject/badges/master/coverage.svg)](https://gitlab.com/mxklb/cuteproject/commits/master)
 
-A simple qmake subdirs project for writing C++ apps based on libs with tests & coverage.
+A simple qmake subdirs project for writing C++ desktop apps based on modules/libs with automated CI tests & coverage.
 
 This aims to be a example/template qmake project with automated unit tests integration (using [catch](https://github.com/philsquared/Catch)). Tests are implememted in separated executabels/subdirs which get executed during compilation incrementally .. compilation fails if any test fails ..
+
+This code has no functionality other than being a example/template for a C++/Qt project.
 
 ## Build Dependencies
 To succesfully build on Ubuntu (trusty):
