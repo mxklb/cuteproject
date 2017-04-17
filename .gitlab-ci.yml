@@ -1,0 +1,16 @@
+stages:
+- build
+
+before_script:
+- apt-get update -y
+- apt-get install -y qt5-default qt5-qmake catch gdb lcov gcovr
+
+build_main:
+  stage: build
+  script:
+    - qmake cuteproject.pro -r CONFIG+=debug
+    - make
+    - gcovr -r .
+    - mkdir coverage
+    - lcov --directory . --capture --output-file coverage/app.info
+    - genhtml --output-directory coverage/ coverage/app.info
