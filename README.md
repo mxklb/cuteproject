@@ -10,7 +10,7 @@ A simple qmake subdirs project for writing C++ desktop apps based on modules/lib
 
 This aims to be a example/template qmake project with automated unit tests integration (using [catch](https://github.com/philsquared/Catch)). Tests are implememted in separated executabels/subdirs which get executed during compilation incrementally .. compilation fails if any test fails ..
 
-This code has no functionality other than being an example/template for a C++/Qt project.
+This code has no functionality other than being an example/template of a C++/Qt project for test driven development.
 
 ## Build Dependencies
 To succesfully build on Ubuntu (trusty):
