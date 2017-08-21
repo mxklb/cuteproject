@@ -15,6 +15,9 @@ otherlib.subdir = libs/otherlib
 # Setup app dependencies
 app.depends = mylib otherlib
 
+# Include global vars
+include(globals.pri)
+
 # -- Include all test projects
 contains(catchTests, true) {
     include(alltests.pri)

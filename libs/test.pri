@@ -7,7 +7,7 @@ CONFIG += c++14
 
 # Set catch header include path
 !exists(/usr/include/catch.hpp) {
-    INCLUDEPATH += $$PROJECT_DIR/libs/catch
+    INCLUDEPATH += $$PWD/catch
 }
 
 # Trigger execution of the test target

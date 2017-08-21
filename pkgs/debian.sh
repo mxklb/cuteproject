@@ -18,7 +18,7 @@ mkdir deb/app-$version/img
 cp -r ../app/* deb/app-$version/app
 cp -r ../libs/* deb/app-$version/libs
 cp -r ../img/* deb/app-$version/img
-cp ../.qmake.conf deb/app-$version
+cp ../globals.pri deb/app-$version
 cp ../alltests.pri deb/app-$version
 cp ../cuteproject.pro deb/app-$version
 
@@ -27,6 +27,9 @@ cp deb/app/app.desktop deb/app-$version/cuteproject.desktop
 
 # Go into build directory
 cd deb/app-$version
+
+# Configure build without tests
+sed -i '1s/.*/catchTests=false/' globals.pri
 
 # Initialize debian configurations
 dh_make --createorig --yes --single --email dev@xamblak.de --copyright mit

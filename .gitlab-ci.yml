@@ -1,11 +1,14 @@
+image: mxklb/docker-qt5-deb
+
 stages:
 - build
+- deploy
 
 before_script:
 - apt-get update -y
-- apt-get install -y qt5-default qt5-qmake catch gdb lcov gcovr
+- apt-get install -y catch gdb lcov gcovr
 
-build_main:
+debug_tests:
   stage: build
   script:
     - qmake cuteproject.pro -r CONFIG+=debug
@@ -14,3 +17,23 @@ build_main:
     - mkdir coverage
     - lcov --directory . --capture --output-file coverage/app.info
     - genhtml --output-directory coverage/ coverage/app.info
+
+release_tests:
+  stage: build
+  script:
+    - qmake cuteproject.pro -r CONFIG+=release
+    - make
+
+deploy_debian:
+  stage: deploy
+  only:
+    - master
+  script:
+    - export USER="mxklb"
+    - chmod +x pkgs/debian.sh
+    - pkgs/debian.sh
+    - mv pkgs/deb/app-*.deb .
+  artifacts:
+    paths:
+      - app-*.deb
+    name: "cuteproject.ubuntu14-04_amd64.deb"
