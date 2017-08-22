@@ -1,3 +1,6 @@
+# Include global vars
+include($$PWD/../globals.pri)
+
 # Include to compile with code coverage flags (gcov)
 contains(catchTests, true) {
     CONFIG(debug, debug|release) {
