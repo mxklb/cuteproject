@@ -36,4 +36,4 @@ deploy_debian:
   artifacts:
     paths:
       - app-*.deb
-    name: "cuteproject.ubuntu14-04_amd64.deb"
+    name: "cuteproject_amd64.deb"
