@@ -12,7 +12,7 @@ Download latest development version here: [cuteproject_amd64.deb](https://gitlab
 
 It's an example/template project with automated unit tests integration (using [catch](https://github.com/philsquared/Catch)). Tests are implememted in separated executabels/subdirs which get executed during compilation incrementally. Compilation fails if any test fails. This is the ideal precondition for test driven development. Deployable packages/installers are build by CI servers.
 
-Feel free to use this as starting point for your own Qt/C++ project.
+Feel free to use this as starting point for your own C++ qmake project.
 
 ## Build Dependencies
 To succesfully build on Ubuntu (trusty):
@@ -31,6 +31,6 @@ To succesfully build on OSX:
     make
 
 ## Development
-Development takes place on github while the repo is mirrored to gitlab for deployment ;)
+Development takes place on [github](https://github.com/mxklb/cuteproject) while the repository is mirrored to [gitlab](https://gitlab.com/mxklb/cuteproject) for deployment ..
 
-Contribution is welcome - therefore checkout [github issues](https://github.com/mxklb/cuteproject/issues).
+Pull requests are welcome - for contribution checkout [issues](https://github.com/mxklb/cuteproject/issues).
