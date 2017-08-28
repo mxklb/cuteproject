@@ -6,7 +6,7 @@ stages:
 
 before_script:
 - apt-get update -y
-- apt-get install -y catch wkhtmltopdf
+- apt-get install -y catch wkhtmltopdf xvfb
 
 debug_tests:
   stage: build

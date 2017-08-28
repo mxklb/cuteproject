@@ -3,7 +3,7 @@
 #
 # Note: Run "gcovr -r ." before using this script!
 #
-# Depends on wkhtmltopdf.org
+# Depends on wkhtmltopdf.org and xvfb
 
 reportname="coverage"
 
@@ -28,4 +28,4 @@ files=$(echo -e "$files" | sort)
 files=$files" "$folder$outfile
 
 # Convert html to pdf
-wkhtmltopdf $files --disable-external-links --footer-center [page]
+xvfb-run --server-args="-screen 0, 1024x768x24" wkhtmltopdf $files --disable-external-links --footer-center [page]
