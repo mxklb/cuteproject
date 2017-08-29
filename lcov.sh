@@ -27,5 +27,9 @@ files=$files"\n"$(find "$folder" -name *.gcov.html)
 files=$(echo -e "$files" | sort)
 files=$files" "$folder$outfile
 
+# Execute wkhtmltopdf.sh install script
+chmod +x libs/extern/wkhtmltox.sh && libs/extern/wkhtmltox.sh
+chmod +x wkhtmltox/bin/wkhtmltopdf
+
 # Convert html to pdf
-xvfb-run --server-args="-screen 0, 1024x768x24" wkhtmltopdf $files --disable-external-links --footer-center [page]
+xvfb-run --server-args="-screen 0, 1024x768x24" wkhtmltox/bin/wkhtmltopdf --disable-external-links --footer-center [page] $files
