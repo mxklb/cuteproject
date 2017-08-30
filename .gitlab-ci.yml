@@ -6,7 +6,7 @@ stages:
 
 before_script:
 - apt-get update -y
-- apt-get install -y catch xvfb
+- apt-get install -y catch wget xvfb
 
 debug_tests:
   stage: build
