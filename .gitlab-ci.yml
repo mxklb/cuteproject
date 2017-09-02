@@ -11,14 +11,16 @@ before_script:
 debug_tests:
   stage: build
   script:
-    - qmake cuteproject.pro -r CONFIG+=debug && make
+    - qmake cuteproject.pro -r CONFIG+=debug
+    - make
     - gcovr -r .
     - chmod +x lcov.sh && ./lcov.sh
-    - mv coverage/*.pdf . && mv coverage/*.tar.gz .
+    - mv coverage/*.pdf .
+    - mv coverage/*.tar.gz .
   artifacts:
     paths:
-      - *.pdf
-      - *.tar.gz
+      - coverage.pdf
+      - coverage.tar.gz
     name: "test_coverage"
 
 release_tests:
