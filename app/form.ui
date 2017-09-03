@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>cuteproject</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
@@ -35,7 +35,7 @@
      <item row="0" column="3">
       <widget class="QLabel" name="addAim">
        <property name="text">
-        <string>TextLabel</string>
+        <string>= 0</string>
        </property>
       </widget>
      </item>
@@ -62,7 +62,7 @@
      <item row="0" column="3">
       <widget class="QLabel" name="subtAim">
        <property name="text">
-        <string>TextLabel</string>
+        <string>= 0</string>
        </property>
       </widget>
      </item>

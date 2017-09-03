@@ -23,8 +23,8 @@ private:
     OtherLib *subtr;
 
 private slots:
-    void additionChanged();
-    void subtractionChanged();
+    void additionChanged(int value = 0);
+    void subtractionChanged(int value = 0);
 };
 
 #endif // FORM_H

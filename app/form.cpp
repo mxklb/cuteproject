@@ -15,8 +15,12 @@ Form::Form(QWidget *parent) :
 
     connect(ui->spinBoxAdd1, SIGNAL(editingFinished()), this, SLOT(additionChanged()));
     connect(ui->spinBoxAdd2, SIGNAL(editingFinished()), this, SLOT(additionChanged()));
+    connect(ui->spinBoxAdd1, SIGNAL(valueChanged(int)), this, SLOT(additionChanged()));
+    connect(ui->spinBoxAdd2, SIGNAL(valueChanged(int)), this, SLOT(additionChanged()));
     connect(ui->spinBoxSubt1, SIGNAL(editingFinished()), this, SLOT(subtractionChanged()));
     connect(ui->spinBoxSubt2, SIGNAL(editingFinished()), this, SLOT(subtractionChanged()));
+    connect(ui->spinBoxSubt1, SIGNAL(valueChanged(int)), this, SLOT(subtractionChanged()));
+    connect(ui->spinBoxSubt2, SIGNAL(valueChanged(int)), this, SLOT(subtractionChanged()));
 }
 
 Form::~Form()
@@ -25,15 +29,17 @@ Form::~Form()
 }
 
 
-void Form::additionChanged()
+void Form::additionChanged(int value)
 {
+    Q_UNUSED(value);
     int result = adder->addition(ui->spinBoxAdd1->value(), ui->spinBoxAdd2->value());
     ui->addAim->setText( QString("= ") + QString::number(result) );
     cout << result << endl;
 }
 
-void Form::subtractionChanged()
+void Form::subtractionChanged(int value)
 {
+    Q_UNUSED(value);
     int result = subtr->subtraction(ui->spinBoxSubt1->value(), ui->spinBoxSubt2->value());
     ui->subtAim->setText( QString("= ") + QString::number(result) );
     cout << result << endl;
