@@ -1,9 +1,11 @@
 #!/bin/bash
-# Generates a .tar.gz compressed lcov html report and a pdf.
+# Generates a .tar.gz compressed lcov html report and a pdf from . directory.
 #
-# Note: Run "gcovr -r ." before using this script!
+# Note: Run gcovr -r . -e '.*extern.*' -e '.*moc_.*' before this script!
 #
-# Depends on wkhtmltopdf.org and xvfb
+# This scripts depends on
+# - wget [to download wkhtmltopdf binary]
+# - xvfb [for headless html2pdf rendering]
 
 reportname="coverage"
 
@@ -11,8 +13,13 @@ reportname="coverage"
 folder="coverage/"
 mkdir $folder
 
-# A] Create a compressed lcov coverage report from . directory
-lcov --directory . --capture --output-file "$folder"app.info
+# Prepare for lcov, remove moc_* files coverage
+find . -name "moc_*.gcda" -delete
+find . -name "moc_*.gcno" -delete
+
+# A] Create a compressed lcov coverage report from . directory (ignore libs/extern)
+lcov --directory . --capture --output-file "$folder"app.info --no-external
+lcov --remove "$folder"app.info "libs/extern/*" -o "$folder"app.info
 genhtml --output-directory $folder "$folder"app.info
 tar czf "$reportname".tar.gz $folder
 mv "$reportname".tar.gz $folder
@@ -20,14 +27,12 @@ mv "$reportname".tar.gz $folder
 # B] Create a pdf from html
 outfile="$reportname.pdf"
 
-# 1 Find all index.html and *.gcov.html files (genhtml)
-# 2 Generates one pdf out of all matching files sorted by name
-files=$(find "$folder" -name index.html)
-files=$files"\n"$(find "$folder" -name *.gcov.html)
-files=$(echo -e "$files" | sort)
-files=$files" "$folder$outfile
+# Find all index.html and *.gcov.html files (see genhtml)
+indexFiles=$(find "$folder" -name index.html -printf "%d %p\n" | sort -n | perl -pe 's/^\d+\s//;')
+otherFiles=$(find "$folder" -name *.gcov.html | sort)
+files=$(echo -e $indexFiles $otherFiles $folder$outfile)
 
-# Execute wkhtmltopdf.sh install script
+# Execute wkhtmltopdf.sh to wget wkhtmltox-*_linux-generic-amd64 binary
 chmod +x libs/extern/wkhtmltox.sh && libs/extern/wkhtmltox.sh
 chmod +x wkhtmltox/bin/wkhtmltopdf
 
