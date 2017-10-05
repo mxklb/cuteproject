@@ -17,11 +17,11 @@ It's an example/template project with automated unit tests integration (using [c
 Feel free to use this as starting point for your own C++ qmake project.
 
 ## Build Dependencies
-To succesfully build on Ubuntu (trusty):
+To succesfully build on debian based OS:
 
-    sudo apt-get install qt5-default qt5-qmake catch gdb
+    sudo apt-get install qt5-default qt5-qmake gdb
 
-To succesfully build on OSX:
+To succesfully build on macOS:
 
     brew update
     brew install qt5

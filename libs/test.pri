@@ -6,9 +6,7 @@ CONFIG += console
 CONFIG += c++14
 
 # Set catch header include path
-!exists(/usr/include/catch.hpp) {
-    INCLUDEPATH += $$PWD/extern/catch
-}
+INCLUDEPATH += $$PWD/extern/catch
 
 # Trigger execution of the test target
 win32: QMAKE_POST_LINK=$${TARGET}.exe
