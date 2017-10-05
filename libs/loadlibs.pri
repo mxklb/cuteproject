@@ -7,6 +7,8 @@
 # - customLibs = ../path/to/lib/mylib ../other/path/to/otherlib
 # - include(loadlibs.pri)
 #
+# Make sure to provide all libname.pri to set INCLUDEPATH & DEPENDPATH!
+#
 # Note: include(loadlibs.pri) will setup all given custom libs ->
 # -> INCLUDEPATH, DEPENDPATH, LIBS, PRE_TARGETDEPS & QMAKE_LFLAGS.
 
