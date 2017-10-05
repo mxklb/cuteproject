@@ -29,16 +29,29 @@ release_tests:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
 
-deploy_debian:
+deploy_trusty:
   stage: deploy
+  image: mxklb/docker-qt5-deb:trusty
   only:
     - master
   script:
-    - export USER="mxklb"
-    - chmod +x pkgs/debian.sh
-    - pkgs/debian.sh
+    - export USER=$GITLAB_USER_LOGIN
+    - chmod +x pkgs/debian.sh && pkgs/debian.sh
     - mv pkgs/deb/app-*.deb .
   artifacts:
     paths:
       - app-*.deb
-    name: "cuteproject_amd64"
+    name: "cuteproject-trusty_amd64"
+
+deploy_xenial:
+  stage: deploy
+  image: mxklb/docker-qt5-deb:xenial
+  only:
+    - master
+  script:
+    - chmod +x pkgs/debian.sh && pkgs/debian.sh
+    - mv pkgs/deb/app-*.deb .
+  artifacts:
+    paths:
+      - app-*.deb
+    name: "cuteproject-xenial_amd64"
