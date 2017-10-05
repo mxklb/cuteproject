@@ -7,6 +7,9 @@ dist: trusty
 compiler:
   - gcc
   - clang
+branches:
+  only:
+  - master
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install qt5-default qt5-qmake gdb ; fi

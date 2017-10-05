@@ -13,7 +13,7 @@ debug_tests:
   script:
     - qmake cuteproject.pro -r CONFIG+=debug
     - make
-    - gcovr -r .
+    - gcovr -r . -e '.*extern.*' -e '.*moc_.*'
     - chmod +x lcov.sh && ./lcov.sh
     - mv coverage/*.pdf .
     - mv coverage/*.tar.gz .

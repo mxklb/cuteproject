@@ -4,3 +4,7 @@
 .qmake.stash
 Makefile
 *.autosave
+*.framework
+*.app/
+*.o
+moc_*
