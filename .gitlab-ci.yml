@@ -6,7 +6,7 @@ stages:
 
 before_script:
 - apt-get update -y
-- apt-get install -y wget xvfb
+- apt-get install -y wget xvfb chrpath
 
 debug_tests:
   stage: build

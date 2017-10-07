@@ -2,6 +2,8 @@
 
 A qmake subdirs template for C++ desktop apps based on modules/libs with automated tests, coverage & deployment.
 
+Feel free to use this as a starting point for your own C++ qmake project.
+
 [![Build Status](https://travis-ci.org/mxklb/cuteproject.svg?branch=master)](https://travis-ci.org/mxklb/cuteproject)
 [![codecov](https://codecov.io/gh/mxklb/cuteproject/branch/master/graph/badge.svg)](https://codecov.io/gh/mxklb/cuteproject)
 [![build status](https://gitlab.com/mxklb/cuteproject/badges/master/build.svg)](https://gitlab.com/mxklb/cuteproject/commits/master)
@@ -13,8 +15,6 @@ Download latest development version here
 -  [cuteproject.ubuntu16.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=deploy_xenial)
 
 It's an example/template project with automated unit tests integration (using [catch](https://github.com/philsquared/Catch)). Tests are implememted in separated executabels/subdirs which get executed during compilation incrementally. Compilation fails if any test fails. This is the ideal precondition for test driven development. Deployable packages/installers are build by CI servers.
-
-Feel free to use this as starting point for your own C++ qmake project.
 
 ## Build Dependencies
 To succesfully build on debian based OS:
