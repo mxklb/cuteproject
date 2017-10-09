@@ -10,7 +10,7 @@ export LOGNAME=$USER
 # Get version info from file
 version=$(cat deb/app/version)
 majver=${version:0:3}
-pkgname="app"
+pkgname="cuteproject"
 
 # Create debian folder ($PACKAGE-$VERSION, f.e myapp-4.2-1)
 mkdir deb/$pkgname-$version
