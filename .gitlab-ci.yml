@@ -37,7 +37,7 @@ deploy_trusty:
   script:
     - export USER=$GITLAB_USER_LOGIN
     - chmod +x pkgs/debian.sh && pkgs/debian.sh
-    - mv pkgs/deb/app-*.deb .
+    - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     paths:
       - app-*.deb
@@ -50,7 +50,7 @@ deploy_xenial:
     - master
   script:
     - chmod +x pkgs/debian.sh && pkgs/debian.sh
-    - mv pkgs/deb/app-*.deb .
+    - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     paths:
       - app-*.deb
