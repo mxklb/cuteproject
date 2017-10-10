@@ -40,7 +40,7 @@ deploy_trusty:
     - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     paths:
-      - app-*.deb
+      - cuteproject-*.deb
     name: "cuteproject-trusty_amd64"
 
 deploy_xenial:
@@ -53,5 +53,5 @@ deploy_xenial:
     - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     paths:
-      - app-*.deb
+      - cuteproject-*.deb
     name: "cuteproject-xenial_amd64"
