@@ -1,4 +1,4 @@
-app/app usr/bin
+app/cuteproject usr/bin
 libs/**/lib*.so usr/lib
 libs/**/lib*.so.* usr/lib
 img/cuteproject.svg usr/share/pixmaps
