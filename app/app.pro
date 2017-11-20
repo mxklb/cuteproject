@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = app
+TARGET = cuteproject
 
 CONFIG += console
 CONFIG += qt
