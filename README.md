@@ -1,6 +1,6 @@
 # Cute Project
 
-A qmake subdirs template for C++ desktop apps.
+A cross platform qmake subdirs template for C++ desktop apps.
 
 It's based on single libs (modules) with automated tests, coverage & deployment.
 

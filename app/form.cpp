@@ -2,25 +2,23 @@
 #include "ui_form.h"
 
 #include <iostream>
+#include <QPainter>
+#include <QDateTime>
 
 using namespace std;
 
-Form::Form(QWidget *parent) :
-    QWidget(parent),
+Form::Form(QWidget *parent) : QWidget(parent),
     ui(new Ui::Form)
 {
     ui->setupUi(this);
     adder = new MyLib();
     subtr = new OtherLib();
 
-    connect(ui->spinBoxAdd1, SIGNAL(editingFinished()), this, SLOT(additionChanged()));
-    connect(ui->spinBoxAdd2, SIGNAL(editingFinished()), this, SLOT(additionChanged()));
-    connect(ui->spinBoxAdd1, SIGNAL(valueChanged(int)), this, SLOT(additionChanged()));
-    connect(ui->spinBoxAdd2, SIGNAL(valueChanged(int)), this, SLOT(additionChanged()));
-    connect(ui->spinBoxSubt1, SIGNAL(editingFinished()), this, SLOT(subtractionChanged()));
-    connect(ui->spinBoxSubt2, SIGNAL(editingFinished()), this, SLOT(subtractionChanged()));
-    connect(ui->spinBoxSubt1, SIGNAL(valueChanged(int)), this, SLOT(subtractionChanged()));
-    connect(ui->spinBoxSubt2, SIGNAL(valueChanged(int)), this, SLOT(subtractionChanged()));
+    QFont font("Monospace");
+    font.setStyleHint(QFont::TypeWriter);
+    setFont(font);
+
+    startTimer(333);
 }
 
 Form::~Form()
@@ -28,19 +26,41 @@ Form::~Form()
     delete ui;
 }
 
-
-void Form::additionChanged(int value)
+// Render background svg logo
+void Form::paintEvent(QPaintEvent *event)
 {
-    Q_UNUSED(value);
-    int result = adder->addition(ui->spinBoxAdd1->value(), ui->spinBoxAdd2->value());
-    ui->addAim->setText( QString("= ") + QString::number(result) );
-    cout << result << endl;
+    QPixmap pixmap = QIcon(":/cuteproject.svg").pixmap(size());
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
+    QPoint pixmapSize(pixmap.width()-1, pixmap.height()-1);
+    QPoint pixmapPosition = window()->rect().bottomRight()/2 - pixmapSize/2;
+    painter.drawPixmap(pixmapPosition, pixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    QWidget::paintEvent(event);
 }
 
-void Form::subtractionChanged(int value)
+// Draw random binary numbers art style
+void Form::timerEvent(QTimerEvent *event)
 {
-    Q_UNUSED(value);
-    int result = subtr->subtraction(ui->spinBoxSubt1->value(), ui->spinBoxSubt2->value());
-    ui->subtAim->setText( QString("= ") + QString::number(result) );
-    cout << result << endl;
+    qsrand(QDateTime::currentMSecsSinceEpoch());
+    double random1 = qrand();
+    double random2 = qrand();
+    int random3 = qrand();
+    int random4 = qrand();
+
+    ui->label_1->setText(QString("%1").arg((int)random1, 0, 2).left(8).replace("0", ".").replace("1", "|"));
+    ui->label_2->setText(QString("%1").arg((int)random2, 0, 2).left(8).replace("0", ".").replace("1", "|"));
+    ui->label_3->setText(QString("%1").arg(random3, 0, 2).left(8).replace("0", ".").replace("1", "|"));
+    ui->label_4->setText(QString("%1").arg(random4, 0, 2).left(8).replace("0", ".").replace("1", "|"));
+
+    QString addResult = QString("%1").arg((int)adder->addition(random1, random2), 0, 2).left(8);
+    QString subResult = QString("%1").arg(subtr->subtraction(random3, random4), 0, 2).left(8);
+
+    QString finalText;
+    if( addResult == subResult )
+        finalText = ".";
+
+    ui->labelCenter->setText(finalText);
+
+    QWidget::timerEvent(event);
 }

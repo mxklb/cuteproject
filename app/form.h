@@ -2,6 +2,8 @@
 #define FORM_H
 
 #include <QWidget>
+#include <QPaintEvent>
+
 #include "mylib.h"
 #include "otherlib.h"
 
@@ -17,14 +19,15 @@ public:
     explicit Form(QWidget *parent = 0);
     ~Form();
 
+protected:
+    void timerEvent(QTimerEvent *event);
+    void paintEvent(QPaintEvent *event);
+
 private:
     Ui::Form *ui;
     MyLib *adder;
     OtherLib *subtr;
-
-private slots:
-    void additionChanged(int value = 0);
-    void subtractionChanged(int value = 0);
+    int timerId;
 };
 
 #endif // FORM_H

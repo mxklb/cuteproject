@@ -24,3 +24,5 @@ unix:!macx {
     target.path = $$[QT_INSTALL_PREFIX]/bin
     INSTALLS += target
 }
+
+RESOURCES += app.qrc

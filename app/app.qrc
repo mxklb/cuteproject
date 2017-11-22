@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+  <file alias="cuteproject.svg">../img/cuteproject.svg</file>
+</qresource>
+</RCC>
