@@ -30,6 +30,7 @@ Form::~Form()
 void Form::paintEvent(QPaintEvent *event)
 {
     QPixmap pixmap = QIcon(":/cuteproject.svg").pixmap(size());
+    if( pixmap.isNull() ) pixmap = QIcon(":/cuteproject.icns").pixmap(size());
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
     QPoint pixmapSize(pixmap.width()-1, pixmap.height()-1);
