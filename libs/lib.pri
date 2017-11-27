@@ -2,7 +2,6 @@
 # Note: Use this after declaring HEADERS & SOURCE!
 TEMPLATE = lib
 CONFIG += console
-win32: CONFIG += dll
 
 include($$PWD/osx.pri)
 include($$PWD/coverage.pri)

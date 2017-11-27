@@ -28,7 +28,7 @@ for(lib, customLibs) {
 
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB
         isEmpty(LIB_EXTENSION) {
-            win32: LIB_EXTENSION = dll
+            win32: LIB_EXTENSION = lib
             macx:  LIB_EXTENSION = dylib
             else:  LIB_EXTENSION = so
         }
@@ -45,7 +45,7 @@ for(lib, customLibs) {
         }
         win32 {
             LIBS += -L$${OUTDIR}/release/ -l$${LIBNAME}
-            PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.dll
+            PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
             INCLUDEPATH += $${OUTDIR}/release/
         }
         else {
