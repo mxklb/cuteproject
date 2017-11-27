@@ -9,5 +9,6 @@ install:
   - git submodule update --init --recursive
 
 build_script:
+  - echo %catchTests=false% > globals.pri
   - qmake cuteproject.pro
   - jom
