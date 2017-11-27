@@ -27,7 +27,6 @@ private:
     Ui::Form *ui;
     MyLib *adder;
     OtherLib *subtr;
-    int timerId;
 };
 
 #endif // FORM_H
