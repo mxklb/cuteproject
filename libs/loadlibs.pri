@@ -18,7 +18,7 @@ for(lib, customLibs) {
     !isEmpty(lib) {
         LIBDIR = $$dirname(lib)
         LIBNAME = $$basename(lib)
-        message("$${TARGET} is loading $$LIBNAME -> from: $$LIBDIR")
+        #message("$${TARGET} is loading $$LIBNAME -> from: $$LIBDIR")
 
         # Load lib.pri to set INCLUDEPATH & DEPENDPATH
         exists($$_PRO_FILE_PWD_/$$LIBDIR/$$LIBNAME.pri) {
@@ -44,8 +44,8 @@ for(lib, customLibs) {
             INCLUDEPATH += -F$${LIBDIR}
         }
         win32 {
-            LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
-            PRE_TARGETDEPS += $${OUTDIR}/$${LIBNAME}.$${LIB_EXTENSION}
+            LIBS += -L$${OUTDIR}/release/ -l$${LIBNAME}
+            PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
         }
         else {
             LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
