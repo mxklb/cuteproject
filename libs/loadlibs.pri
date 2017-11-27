@@ -46,6 +46,7 @@ for(lib, customLibs) {
         win32 {
             LIBS += -L$${OUTDIR}/release/ -l$${LIBNAME}
             PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
+            INCLUDEPATH += $${OUTDIR}/release/
         }
         else {
             LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
