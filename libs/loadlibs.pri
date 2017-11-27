@@ -32,7 +32,7 @@ for(lib, customLibs) {
             macx:  LIB_EXTENSION = dylib
             else:  LIB_EXTENSION = so
         }
-        #message($${LIB_EXTENSION})
+        message($${LIB_EXTENSION})
 
         # Get dynamic lib binary directory
         OUTDIR = $$clean_path($$OUT_PWD/$${LIBDIR})
@@ -45,7 +45,7 @@ for(lib, customLibs) {
         }
         win32 {
             LIBS += -L$${OUTDIR}/release/ -l$${LIBNAME}
-            PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
+            PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.dll
             INCLUDEPATH += $${OUTDIR}/release/
         }
         else {
