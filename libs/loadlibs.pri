@@ -57,7 +57,6 @@ for(lib, customLibs) {
             frameworks += $$files($${OUTDIR}/$${LIBNAME}.framework)
             LIBS += -F$${OUTDIR}/ -framework $${LIBNAME}
             PRE_TARGETDEPS += $${OUTDIR}/$${LIBNAME}.framework
-            INCLUDEPATH += -F$${LIBDIR}
         }
         unix:!macx {
             LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
