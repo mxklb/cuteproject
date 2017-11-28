@@ -32,7 +32,7 @@ for(lib, customLibs) {
             macx:  LIB_EXTENSION = dylib
             else:  LIB_EXTENSION = so
         }
-        win32: {
+        win32 {
             LIB_EXTENSION = $$QMAKE_EXTENSION_STATICLIB
             isEmpty(LIB_EXTENSION) {
                 LIB_EXTENSION = lib
