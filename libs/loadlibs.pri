@@ -50,8 +50,14 @@ for(lib, customLibs) {
             INCLUDEPATH += -F$${LIBDIR}
         }
         win32 {
-            LIBS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
-            PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
+            CONFIG(debug, debug|release) {
+                WINDIR = debug
+            }
+            CONFIG(release, debug|release) {
+                WINDIR = release
+            }
+            LIBS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
+            PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
         }
         else {
             LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
