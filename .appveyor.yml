@@ -10,6 +10,6 @@ install:
 
 build_script:
   - ps: echo "catchTests=false" > globals.pri
-  - qmake cuteproject.pro
+  - qmake cuteproject.pro -r CONFIG+=release
   - jom
   - ps: Get-ChildItem $(get-location).Path | get-acl

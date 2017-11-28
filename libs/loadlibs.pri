@@ -44,6 +44,7 @@ for(lib, customLibs) {
             INCLUDEPATH += -F$${LIBDIR}
         }
         win32 {
+            LIB_EXTENSION = lib
             LIBS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
             #DLLS.files += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
             PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
