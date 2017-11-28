@@ -28,11 +28,11 @@ for(lib, customLibs) {
 
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB
         isEmpty(LIB_EXTENSION) {
-            win32: LIB_EXTENSION = lib
             macx:  LIB_EXTENSION = dylib
             else:  LIB_EXTENSION = so
         }
-        message($${LIB_EXTENSION})
+        win32: LIB_EXTENSION = lib
+        #message($${LIB_EXTENSION})
 
         # Get library's binary directory
         OUTDIR = $$clean_path($$OUT_PWD/$${LIBDIR})
