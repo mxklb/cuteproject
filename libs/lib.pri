@@ -1,7 +1,12 @@
 # Common template used by all custom subdir libs.
 # Note: Use this after declaring HEADERS & SOURCE!
 TEMPLATE = lib
-CONFIG += shared
+unix: {
+    CONFIG += shared
+}
+else {
+    CONFIG += static
+}
 
 include($$PWD/osx.pri)
 include($$PWD/coverage.pri)
