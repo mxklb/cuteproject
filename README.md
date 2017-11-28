@@ -6,7 +6,7 @@ It's based on single libs (modules) with automated tests, coverage & deployment.
 
 This is a C++ qmake project template with automated unit tests execution (uses [catch](https://github.com/philsquared/Catch)). Tests are implemented in separated executables (subdirs) which get executed during compilation incrementally. Compilation fails if any test fails. This is the ideal precondition for test driven development. Deployable packages/installers are build by CI servers.
 
-This is meant o be an easy extendable qmake subdirs example project.
+This is meant to be an easy extendable qmake subdirs example project.
 
 [![Build Status](https://travis-ci.org/mxklb/cuteproject.svg?branch=master)](https://travis-ci.org/mxklb/cuteproject)
 [![codecov](https://codecov.io/gh/mxklb/cuteproject/branch/master/graph/badge.svg)](https://codecov.io/gh/mxklb/cuteproject)
