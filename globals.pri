@@ -1,1 +1,1 @@
-catchTests=false
+catchTests=true
