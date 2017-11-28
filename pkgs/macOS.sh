@@ -23,10 +23,26 @@ libPath="$scriptPath/../libs"
 appPath="$scriptPath/../app/$binName.app"
 binPath="$appPath/Contents/MacOS/$binName"
 
-echo "Setup $binName binary dependencies ..."
+echo "Fix macdeployqt: Copy all needed qt frameworks .."
 
-# Create frameworks directory
-mkdir -p $appPath/Contents/Frameworks
+# Create Frameworks directory
+appFrameworksPath="$appPath/Contents/Frameworks"
+mkdir -p $appFrameworksPath
+
+# Detect all linked qt5 libs/frameworks
+qt5Libs=($(otool -L $binPath | grep qt5))
+qt5Libs=($(printf '%s\n' "${qt5Libs[@]}" | grep qt5))
+qt5Libs=($(echo ${qt5Libs[@]##*/}))
+qt5LibPath=$(qmake --version | grep "Using Qt" | awk -F" " '{print $NF}')
+
+# Copy qt5 frameworks
+libCount=${#qt5Libs[@]}
+for ((i=0; i<$libCount; i++)); do
+    echo " - Copy $qt5LibPath/${qt5Libs[$i]} -> $appFrameworksPath .."
+    cp -R $qt5LibPath/${qt5Libs[$i]}.framework $appFrameworksPath
+done
+
+echo "Setup custom $binName library dependencies ..."
 
 # Use otool to grep libIdentifier => to get all custom linked frameworks
 linkedLibs=($(otool -L $binPath | grep $libIdentifier | awk '{print $1;}'))

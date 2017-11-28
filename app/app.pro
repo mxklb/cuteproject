@@ -19,10 +19,15 @@ customLibs += ../libs/otherlib/otherlib
 # Load and link these custom libs
 include(../libs/loadlibs.pri)
 
+# Set application icon
+ICON = ../img/cuteproject.svg
+macx: ICON = ../img/logo.icns
+win32: RC_ICONS += ../img/logo.ico
+
+RESOURCES += app.qrc
+
 unix:!macx {
     target.files += $$OUT_PWD/$$TARGET
     target.path = $$[QT_INSTALL_PREFIX]/bin
     INSTALLS += target
 }
-
-RESOURCES += app.qrc
