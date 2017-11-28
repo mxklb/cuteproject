@@ -28,7 +28,7 @@ for(lib, customLibs) {
 
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB
         isEmpty(LIB_EXTENSION) {
-            win32: LIB_EXTENSION = lib
+            win32: LIB_EXTENSION = dll
             macx:  LIB_EXTENSION = dylib
             else:  LIB_EXTENSION = so
         }
@@ -44,9 +44,11 @@ for(lib, customLibs) {
             INCLUDEPATH += -F$${LIBDIR}
         }
         win32 {
-            LIBS += -L$${OUTDIR}/release/ -l$${LIBNAME}
+            LIBS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
+            #DLLS.files += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
             PRE_TARGETDEPS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
-            INCLUDEPATH += $${OUTDIR}/release/
+            #QMAKE_LFLAGS += $${OUTDIR}/release/$${LIBNAME}.$${LIB_EXTENSION}
+            #INCLUDEPATH += $${OUTDIR}/release/
         }
         else {
             LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
@@ -61,3 +63,8 @@ macx { # Deploy all linked frameworks to target bundle
     APP_LIB_FILES.path = Contents/Frameworks/
     QMAKE_BUNDLE_DATA += APP_LIB_FILES
 }
+
+#win32 {
+#    DLLS.path = $$OUT_PWD
+#    INSTALLS += DLLS
+#}
