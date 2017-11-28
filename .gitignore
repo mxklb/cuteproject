@@ -7,4 +7,6 @@ Makefile
 *.framework
 *.app/
 *.o
+ui_*
+qrc_*
 moc_*

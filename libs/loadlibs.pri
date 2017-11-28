@@ -43,12 +43,6 @@ for(lib, customLibs) {
         # Get library's binary directory
         OUTDIR = $$clean_path($$OUT_PWD/$${LIBDIR})
 
-        macx {
-            frameworks += $$files($${OUTDIR}/$${LIBNAME}.framework)
-            LIBS += -F$${OUTDIR}/ -framework $${LIBNAME}
-            PRE_TARGETDEPS += $${OUTDIR}/$${LIBNAME}.framework
-            INCLUDEPATH += -F$${LIBDIR}
-        }
         win32 {
             CONFIG(debug, debug|release) {
                 WINDIR = debug
@@ -59,7 +53,13 @@ for(lib, customLibs) {
             LIBS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
             PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
         }
-        else {
+        macx {
+            frameworks += $$files($${OUTDIR}/$${LIBNAME}.framework)
+            LIBS += -F$${OUTDIR}/ -framework $${LIBNAME}
+            PRE_TARGETDEPS += $${OUTDIR}/$${LIBNAME}.framework
+            INCLUDEPATH += -F$${LIBDIR}
+        }
+        unix:!macx {
             LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
             PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
             QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
