@@ -12,3 +12,4 @@ build_script:
   - ps: echo "catchTests=false" > globals.pri
   - qmake cuteproject.pro
   - jom
+  - ps: Get-ChildItem $(get-location).Path | get-acl
