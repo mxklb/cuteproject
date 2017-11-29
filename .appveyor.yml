@@ -16,7 +16,7 @@ build_script:
   - jom
 #  - mingw32-make
   - ps: Get-ChildItem -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno
-  - ps: dumpbin /dependents app\%BUILD_TYPE%\cuteproject.exe
+  - dumpbin /dependents $((Get-Item -Path ".\" -Verbose).FullName)\app\%BUILD_TYPE%\cuteproject.exe
 
 artifacts:
   - path: app\%BUILD_TYPE%\*.exe
