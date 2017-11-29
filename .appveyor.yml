@@ -1,6 +1,7 @@
 image: Visual Studio 2015
 
 init:
+  - set BUILD_TYPE=release
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
   - set PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;C:\Qt\Tools\QtCreator\bin;
 #  - set PATH=%PATH%;C:\Qt\5.9.2\mingw53_32\bin;C:\Qt\5.9.2\mingw53_32\lib;C:\Qt\Tools\QtCreator\bin;
@@ -10,7 +11,13 @@ install:
   - git submodule update --init --recursive
 
 build_script:
-  - qmake cuteproject.pro -r CONFIG+=debug
+  - echo "catchTests=false" > globals.pri
+  - qmake cuteproject.pro -r CONFIG+=%BUILD_TYPE%
   - jom
 #  - mingw32-make
   - ps: Get-ChildItem -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno
+  - ps: depends /oc:tmp.txt app\%BUILD_TYPE%\cuteproject.exe
+  - ps: Import-Csv tmp.txt | Format-Table -AutoSize
+
+artifacts:
+  - path: app\%BUILD_TYPE%\*.exe
