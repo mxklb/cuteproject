@@ -21,7 +21,7 @@ after_build:
 #  - ps: dumpbin /dependents .\app\$env:BUILD_TYPE\cuteproject.exe
   - ps: windeployqt --no-compiler-runtime app\$env:BUILD_TYPE\cuteproject.exe
 #  - ps: dumpbin /dependents .\app\$env:BUILD_TYPE\cuteproject.exe
-  - 7z a cuteproject.zip app\$env:BUILD_TYPE
+  - 7z a -r cuteproject.zip app\%BUILD_TYPE%
 
 artifacts:
   - path: cuteproject.zip
