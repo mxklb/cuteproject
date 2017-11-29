@@ -1,7 +1,7 @@
 image: Visual Studio 2015
 
 init:
-#  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
 #  - set PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;C:\Qt\Tools\QtCreator\bin;
   - set PATH=%PATH%;C:\Qt\5.9.2\mingw53_32\bin;C:\Qt\5.9.2\mingw53_32\lib;C:\Qt\Tools\QtCreator\bin;
 
