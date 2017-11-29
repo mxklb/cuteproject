@@ -2,9 +2,12 @@
 # Note: Use this after declaring HEADERS & SOURCE!
 TEMPLATE = lib
 CONFIG += shared
+win32 {
+    CONFIG -= shared
+    CONFIG += static
+}
 
 include($$PWD/osx.pri)
-include($$PWD/win32.pri)
 include($$PWD/coverage.pri)
 
 unix:!macx {

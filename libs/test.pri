@@ -10,7 +10,7 @@ INCLUDEPATH += $$PWD/extern/catch
 
 # Trigger execution of the test target
 win32 {
-  include($$PWD/common.pri)
+  include($$PWD/win32.pri)
   QMAKE_POST_LINK = $$system_path($$OUT_PWD/$${WINDIR}/$${TARGET}.exe)
 }
 macx {

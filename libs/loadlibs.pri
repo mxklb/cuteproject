@@ -12,7 +12,7 @@
 # Note: include(loadlibs.pri) will setup all given custom libs ->
 # -> INCLUDEPATH, DEPENDPATH, LIBS, PRE_TARGETDEPS & QMAKE_LFLAGS.
 
-include($$PWD/common.pri)
+include($$PWD/win32.pri)
 
 QMAKE_PROJECT_DEPTH = 0 # Forces absolute paths
 
