@@ -29,8 +29,8 @@ for(lib, customLibs) {
         #  Set library file extension
         LIB_EXTENSION = $$QMAKE_EXTENSION_SHLIB
         isEmpty(LIB_EXTENSION) {
-            macx:  LIB_EXTENSION = dylib
-            else:  LIB_EXTENSION = so
+            macx: LIB_EXTENSION = dylib
+            unix:!macx: LIB_EXTENSION = so
         }
         win32 {
             LIB_EXTENSION = $$QMAKE_EXTENSION_STATICLIB
@@ -43,6 +43,12 @@ for(lib, customLibs) {
         # Get library's binary directory
         OUTDIR = $$clean_path($$OUT_PWD/$${LIBDIR})
 
+        macx {
+            frameworks += $$files($${OUTDIR}/$${LIBNAME}.framework)
+            LIBS += -F$${OUTDIR}/ -framework $${LIBNAME}
+            PRE_TARGETDEPS += $${OUTDIR}/$${LIBNAME}.framework
+            INCLUDEPATH += -F$${LIBDIR}
+        }
         win32 {
             CONFIG(debug, debug|release) {
                 WINDIR = debug
@@ -52,11 +58,6 @@ for(lib, customLibs) {
             }
             LIBS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
             PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
-        }
-        macx {
-            frameworks += $$files($${OUTDIR}/$${LIBNAME}.framework)
-            LIBS += -F$${OUTDIR}/ -framework $${LIBNAME}
-            PRE_TARGETDEPS += $${OUTDIR}/$${LIBNAME}.framework
         }
         unix:!macx {
             LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
