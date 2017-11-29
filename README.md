@@ -19,6 +19,8 @@ Download latest development binary version:
 - [cuteproject.macOS-10.11.dmg](https://rawgit.com/mxklb/cuteproject/osx-deploy/cuteproject.dmg)
 - [cuteproject.ubuntu14.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=deploy_trusty)
 - [cuteproject.ubuntu16.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=deploy_xenial)
+- [cuteproject.windows_x86.zip](https://ci.appveyor.com/api/projects/mxklb/cuteproject/artifacts/cuteproject.zip?branch=master)
+
 
 Feel free to reuse this as a starting point for your personal project.
 

@@ -21,8 +21,9 @@ after_build:
   - ps: Get-ChildItem -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno
 #  - ps: dumpbin /dependents .\app\$env:BUILD_TYPE\cuteproject.exe
   - ps: windeployqt --no-compiler-runtime app\$env:BUILD_TYPE\cuteproject.exe
-#  - ps: dumpbin /dependents .\app\$env:BUILD_TYPE\cuteproject.exe
-  - 7z a -r cuteproject.zip app\%BUILD_TYPE%
+  - ps: md -Force cuteproject
+  - ps: Copy-Item -Path app\$env:BUILD_TYPE -Destination cuteproject –Recurse
+  - 7z a -r cuteproject-windows_x86.zip cuteproject
 
 artifacts:
-  - path: cuteproject.zip
+  - path: cuteproject-*.zip
