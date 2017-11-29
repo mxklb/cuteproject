@@ -17,6 +17,8 @@ build_script:
 #  - mingw32-make
   - ps: Get-ChildItem -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno
   - ps: dumpbin /dependents .\app\$env:BUILD_TYPE\cuteproject.exe
+  - ps: windeployqt --no-compiler-runtime .\app\$env:BUILD_TYPE\cuteproject.exe
+  - ps: dumpbin /dependents .\app\$env:BUILD_TYPE\cuteproject.exe
 
 artifacts:
   - path: app\%BUILD_TYPE%\*.exe
