@@ -12,6 +12,8 @@
 # Note: include(loadlibs.pri) will setup all given custom libs ->
 # -> INCLUDEPATH, DEPENDPATH, LIBS, PRE_TARGETDEPS & QMAKE_LFLAGS.
 
+include($$PWD/common.pri)
+
 QMAKE_PROJECT_DEPTH = 0 # Forces absolute paths
 
 for(lib, customLibs) {
@@ -50,12 +52,6 @@ for(lib, customLibs) {
             INCLUDEPATH += -F$${LIBDIR}
         }
         win32 {
-            CONFIG(debug, debug|release) {
-                WINDIR = debug
-            }
-            CONFIG(release, debug|release) {
-                WINDIR = release
-            }
             LIBS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
             PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
         }

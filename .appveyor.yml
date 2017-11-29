@@ -11,5 +11,4 @@ install:
 build_script:
   - qmake cuteproject.pro -r CONFIG+=release
   - jom
-  - ps: Get-ChildItem $(get-location).Path | get-acl
   - ps: ls $(get-location).Path -filter *.exe -recurse
