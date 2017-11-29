@@ -16,8 +16,7 @@ build_script:
   - jom
 #  - mingw32-make
   - ps: Get-ChildItem -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno
-  - ps: depends /oc:tmp.txt app\%BUILD_TYPE%\cuteproject.exe
-  - ps: Import-Csv tmp.txt | Format-Table -AutoSize
+  - ps: dumpbin /dependents app\%BUILD_TYPE%\cuteproject.exe
 
 artifacts:
   - path: app\%BUILD_TYPE%\*.exe
