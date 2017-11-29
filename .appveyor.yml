@@ -14,6 +14,7 @@ build_script:
   - echo "catchTests=false" > globals.pri
   - qmake cuteproject.pro -r CONFIG+=%BUILD_TYPE%
   - jom
+  - jom clean
 #  - mingw32-make
 
 after_build:
