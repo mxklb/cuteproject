@@ -11,4 +11,4 @@ install:
 build_script:
   - qmake cuteproject.pro -r CONFIG+=release
   - jom
-  - ps: ls $(get-location).Path -filter "*.exe,*.dll,*.lib,*.gcda,*.gcno" -recurse
+  - ps: Get-ChildItem  -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno
