@@ -35,10 +35,18 @@ To successfully build on macOS:
     brew install qt5
     export PATH=$(brew --prefix)/opt/qt5/bin:$PATH
 
+To successfully build on windows:
+
+    call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+    set PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;C:\Qt\Tools\QtCreator\bin;
+
+Note: May also work with other Qt & MSVC versions ..
+
 ## Build Instructions
 
     qmake
     make
+Note: On windows use ```jom``` instead of ```make```
 
 ## Development
 Development takes place on [github](https://github.com/mxklb/cuteproject) while the repository is mirrored to [gitlab](https://gitlab.com/mxklb/cuteproject) for deployment ..
