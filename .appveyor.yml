@@ -9,6 +9,6 @@ install:
   - git submodule update --init --recursive
 
 build_script:
-  - qmake cuteproject.pro -r CONFIG+=release
+  - qmake cuteproject.pro -r CONFIG+=debug
   - jom
-  - ps: Get-ChildItem  -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno
+  - ps: Get-ChildItem -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno

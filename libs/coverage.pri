@@ -12,6 +12,10 @@ contains(catchTests, true) {
         } else {
             QMAKE_LFLAGS += --coverage -fno-inline
         }
+        win32 {
+            QMAKE_LFLAGS += -lgcov
+            QMAKE_LFLAGS += -fprofile-arcs -ftest-coverage
+        }
         # Add clean -> remove .gcda .gcno
         for(source, SOURCES) {
             gcnoFile = $$replace(source, .cpp, .gcno)
