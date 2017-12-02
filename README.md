@@ -16,9 +16,9 @@ This is meant to be an easy extendable qmake subdirs example project.
 [![GitHub license](https://img.shields.io/badge/MIT-license-blue.svg)](https://raw.githubusercontent.com/mxklb/cuteproject/master/LICENSE)
 
 Download latest development binary version:
-- [cuteproject.macOS-10.11.dmg](https://rawgit.com/mxklb/cuteproject/osx-deploy/cuteproject.dmg)
 - [cuteproject.ubuntu14.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=deploy_trusty)
 - [cuteproject.ubuntu16.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=deploy_xenial)
+- [cuteproject.macOS-10.11.dmg](https://rawgit.com/mxklb/cuteproject/osx-deploy/cuteproject.dmg)
 - [cuteproject.windows_x86.zip](https://ci.appveyor.com/api/projects/mxklb/cuteproject/artifacts/cuteproject-windows_x86.zip?branch=master)
 
 
@@ -35,12 +35,12 @@ To successfully build on macOS:
     brew install qt5
     export PATH=$(brew --prefix)/opt/qt5/bin:$PATH
 
-To successfully build on windows:
+To successfully build on windows (install Qt & MSVC):
 
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
     set PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;C:\Qt\Tools\QtCreator\bin;
 
-Note: May also work with other Qt & MSVC versions ..
+Note: Shall also work with other Qt or MSVC versions ..
 
 ## Build Instructions
 
