@@ -39,7 +39,7 @@ qtLibPath=$(qmake --version | grep "Using Qt" | awk -F" " '{print $NF}')
 libCount=${#qtLibs[@]}
 for ((i=0; i<$libCount; i++)); do
     echo " - Copy $qtLibPath/${qtLibs[$i]} -> $appFrameworksPath .."
-    cp -R $qtLibPath/${qtLibs[$i]}.framework $appFrameworksPath
+    cp -Ra $qtLibPath/${qtLibs[$i]}.framework $appFrameworksPath
 done
 
 echo "Setup custom $binName library dependencies ..."
@@ -52,7 +52,7 @@ frameworks=($(printf '%s\n' "${linkedLibs[@]}" | rev | cut -d'/' -f 1 | rev))
 libCount=${#linkedLibs[@]}
 for ((i=0; i<$libCount; i++)); do
     echo " - Preparing ${frameworks[$i]} framework: substitute ${linkedLibs[$i]} with @executable_path"
-    cp -R $libPath/${frameworks[$i]}/${frameworks[$i]}.framework $appPath/Contents/Frameworks
+    cp -Ra $libPath/${frameworks[$i]}/${frameworks[$i]}.framework $appPath/Contents/Frameworks
     install_name_tool -id @executable_path/../Frameworks/${frameworks[$i]}.framework/Versions/1/${frameworks[$i]} $appPath/Contents/Frameworks/${frameworks[$i]}.framework/Versions/1/${frameworks[$i]}
     install_name_tool -change ${linkedLibs[$i]} @executable_path/../Frameworks/${frameworks[$i]}.framework/Versions/1/${frameworks[$i]} $binPath
 done
@@ -80,7 +80,7 @@ executables=$(echo "${libBinaries[*]}")
 # Create a .dmg image (with Qt libs)
 echo "Creating the .dmg disk image ..."
 cd "$scriptPath/../app"
-macdeployqt "$binName.app" -dmg $executables
+macdeployqt "$binName.app" -dmg $executables -verbose=3
 
 # Modify/Optimize .dmg image
 chmod +x "$scriptPath/osx/dmg.sh"
