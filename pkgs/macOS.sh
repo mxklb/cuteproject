@@ -29,17 +29,17 @@ echo "Fix macdeployqt: Copy all needed qt frameworks .."
 appFrameworksPath="$appPath/Contents/Frameworks"
 mkdir -p $appFrameworksPath
 
-# Detect all linked qt5 libs/frameworks
-qt5Libs=($(otool -L $binPath | grep qt5))
-qt5Libs=($(printf '%s\n' "${qt5Libs[@]}" | grep qt5))
-qt5Libs=($(echo ${qt5Libs[@]##*/}))
-qt5LibPath=$(qmake --version | grep "Using Qt" | awk -F" " '{print $NF}')
+# Detect all linked Qt libs/frameworks
+qtLibs=($(otool -L $binPath | grep Qt))
+qtLibs=($(printf '%s\n' "${qtLibs[@]}" | grep Qt))
+qtLibs=($(echo ${qtLibs[@]##*/}))
+qtLibPath=$(qmake --version | grep "Using Qt" | awk -F" " '{print $NF}')
 
-# Copy qt5 frameworks
-libCount=${#qt5Libs[@]}
+# Copy Qt frameworks
+libCount=${#qtLibs[@]}
 for ((i=0; i<$libCount; i++)); do
-    echo " - Copy $qt5LibPath/${qt5Libs[$i]} -> $appFrameworksPath .."
-    cp -R $qt5LibPath/${qt5Libs[$i]}.framework $appFrameworksPath
+    echo " - Copy $qtLibPath/${qtLibs[$i]} -> $appFrameworksPath .."
+    cp -R $qtLibPath/${qtLibs[$i]}.framework $appFrameworksPath
 done
 
 echo "Setup custom $binName library dependencies ..."
