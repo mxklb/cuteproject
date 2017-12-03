@@ -80,7 +80,7 @@ executables=$(echo "${libBinaries[*]}")
 # Create a .dmg image (with Qt libs)
 echo "Creating the .dmg disk image ..."
 cd "$scriptPath/../app"
-macdeployqt "$binName.app" -dmg $executables -verbose=3
+macdeployqt "$binName.app" -dmg $executables -verbose=2 -always-overwrite
 
 # Modify/Optimize .dmg image
 chmod +x "$scriptPath/osx/dmg.sh"
