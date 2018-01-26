@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QPainter>
 #include <QDateTime>
+#include <QtSvg>
 
 using namespace std;
 
@@ -31,11 +32,15 @@ void Form::paintEvent(QPaintEvent *event)
 {
     QPixmap pixmap = QIcon(":/cuteproject.svg").pixmap(size());
     if( pixmap.isNull() ) pixmap = QIcon(":/cuteproject.icns").pixmap(size());
+    if( pixmap.isNull() ) pixmap = QIcon(":/cuteproject.ico").pixmap(size());
+    if( pixmap.isNull() ) pixmap = QIcon(":/cuteproject.png").pixmap(size());
+    pixmap = pixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
     QPoint pixmapSize(pixmap.width()-1, pixmap.height()-1);
-    QPoint pixmapPosition = window()->rect().bottomRight()/2 - pixmapSize/2;
-    painter.drawPixmap(pixmapPosition, pixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    QPoint position = window()->rect().bottomRight()/2 - pixmapSize/2;
+    painter.drawPixmap(position, pixmap);
 
     QWidget::paintEvent(event);
 }

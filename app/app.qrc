@@ -1,6 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
   <file alias="cuteproject.svg">../img/cuteproject.svg</file>
+  <file alias="cuteproject.png">../img/cuteproject.png</file>
   <file alias="cuteproject.icns">../img/logo.icns</file>
+  <file alias="cuteproject.ico">../img/logo.ico</file>
 </qresource>
 </RCC>
