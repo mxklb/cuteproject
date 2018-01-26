@@ -10,3 +10,7 @@ Makefile
 ui_*
 qrc_*
 moc_*
+*.AppImage
+*.deb
+.DirIcon
+AppRun

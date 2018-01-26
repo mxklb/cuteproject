@@ -29,6 +29,13 @@ release_tests:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
 
+release:
+  stage: build
+  script:
+    - echo "catchTests=false" > globals.pri
+    - qmake cuteproject.pro -r CONFIG+=release
+    - make
+
 deploy_trusty:
   stage: deploy
   image: mxklb/docker-qt5-deb:trusty
