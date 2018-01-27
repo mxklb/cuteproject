@@ -6,7 +6,7 @@ stages:
 
 before_script:
 - apt-get update -y
-- apt-get install -y wget xvfb chrpath
+- apt-get install -y wget xvfb chrpath libfuse-dev
 
 debug_tests:
   stage: build
