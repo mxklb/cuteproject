@@ -4,7 +4,6 @@
 #include <iostream>
 #include <QPainter>
 #include <QDateTime>
-#include <QtSvg>
 
 using namespace std;
 
