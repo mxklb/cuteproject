@@ -36,6 +36,19 @@ release:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
 
+deploy_appimage:
+  stage: deploy
+  image: mxklb/docker-qt5-deb:trusty
+  script:
+    - echo "catchTests=false" > globals.pri
+    - qmake cuteproject.pro -r CONFIG+=release
+    - make
+    - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
+    - mv pkgs/cuteproject-*.AppImage .
+  artifacts:
+    paths:
+      - cuteproject-*.AppImage
+
 deploy_trusty:
   stage: deploy
   image: mxklb/docker-qt5-deb:trusty
