@@ -16,6 +16,7 @@ This is meant to be an easy extendable qmake subdirs example project.
 [![GitHub license](https://img.shields.io/badge/MIT-license-blue.svg)](https://raw.githubusercontent.com/mxklb/cuteproject/master/LICENSE)
 
 Download latest development binary version:
+- [cuteproject-linux.x86_64.AppImage](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=deploy_appimage)
 - [cuteproject.ubuntu14.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=deploy_trusty)
 - [cuteproject.ubuntu16.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=deploy_xenial)
 - [cuteproject.macOS-10.11.dmg](https://rawgit.com/mxklb/cuteproject/osx-deploy/cuteproject.dmg)

@@ -6,7 +6,7 @@ stages:
 
 before_script:
 - apt-get update -y
-- apt-get install -y wget xvfb chrpath
+- apt-get install -y wget xvfb chrpath libfuse-dev
 
 debug_tests:
   stage: build
@@ -35,6 +35,22 @@ release:
     - echo "catchTests=false" > globals.pri
     - qmake cuteproject.pro -r CONFIG+=release
     - make
+
+deploy_appimage:
+  stage: deploy
+  image: mxklb/docker-qt5-deb:trusty
+  only:
+    - master
+  script:
+    - echo "catchTests=false" > globals.pri
+    - qmake cuteproject.pro -r CONFIG+=release
+    - make
+    - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
+    - mv pkgs/cuteproject-*.AppImage .
+  artifacts:
+    paths:
+      - cuteproject-*.AppImage
+    name: "cuteproject-x86_64"
 
 deploy_trusty:
   stage: deploy
