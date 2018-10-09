@@ -10,6 +10,10 @@ environment:
       tbs_tools: "mingw"
       tbs_static_runtime: 1
 
+branches:
+  except:
+    - osx-deploy
+
 init:
   - set BUILD_TYPE=release
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"

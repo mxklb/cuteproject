@@ -12,6 +12,7 @@ cd $scriptPath
 
 mkdir dmg
 cp $scriptPath/../../app/cuteproject-*.dmg dmg/cuteproject.dmg
+cp $scriptPath/appveyor.yml dmg/.appveyor.yml
 cp $scriptPath/travis.yml dmg/.travis.yml
 cp $scriptPath/README.md dmg/README.md
 cd dmg
