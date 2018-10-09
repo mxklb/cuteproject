@@ -1,21 +1,31 @@
 image: Visual Studio 2015
 
+environment:
+  matrix:
+    - tbs_arch: "x64"
+      tbs_tools: "msvc14"
+      tbs_static_runtime: 0
+
+    - tbs_arch: "x64"
+      tbs_tools: "mingw"
+      tbs_static_runtime: 1
+
 init:
   - set BUILD_TYPE=release
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
-  - set PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;C:\Qt\Tools\QtCreator\bin;
-#  - set PATH=%PATH%;C:\Qt\5.9.2\mingw53_32\bin;C:\Qt\5.9.2\mingw53_32\lib;C:\Qt\Tools\QtCreator\bin;
+  - set PATH=%PATH%;C:\Qt\Tools\QtCreator\bin;
 
 install:
   # Submodules are not cloned by default
   - git submodule update --init --recursive
 
 build_script:
+  - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x64] SET PATH=C:\MinGW\bin;C:\Qt\5.9.5\mingw53_32\bin;%PATH%
+  - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] SET PATH=C:\Qt\5.9\msvc2015\bin;%PATH%
   - echo "catchTests=false" > globals.pri
   - qmake cuteproject.pro -r CONFIG+=%BUILD_TYPE%
   - jom
   - jom clean
-#  - mingw32-make
 
 after_build:
   - ps: Get-ChildItem -rec -include *.exe,*.dll,*.lib,*.gcda,*.gcno
