@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QPainter>
 #include <QDateTime>
+#include <QIcon>
 
 using namespace std;
 
