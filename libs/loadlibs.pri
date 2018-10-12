@@ -36,6 +36,7 @@ for(lib, customLibs) {
         }
         win32 {
             LIB_EXTENSION = $$QMAKE_EXTENSION_STATICLIB
+            gcc : LIB_EXTENSION = lib
             isEmpty(LIB_EXTENSION) {
                 LIB_EXTENSION = lib
             }
