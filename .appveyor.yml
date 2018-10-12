@@ -8,7 +8,7 @@ environment:
 
     - tbs_arch: "x64"
       tbs_tools: "mingw"
-      tbs_static_runtime: 1
+      tbs_static_runtime: 0
 
 branches:
   except:
