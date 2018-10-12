@@ -25,7 +25,7 @@ install:
 
 build_script:
   - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] SET PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;
-  - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x32] SET PATH=%PATH%;C:\MinGW\bin;C:\Qt\5.9.5\mingw53_32\bin;
+  - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x32] SET PATH=%PATH%;C:\Qt\5.9\Tools\mingw53_32\bin;C:\Qt\5.9.5\mingw53_32\bin;
   - echo "catchTests=false" > globals.pri
   - qmake cuteproject.pro -r CONFIG+=%BUILD_TYPE%
   - jom
