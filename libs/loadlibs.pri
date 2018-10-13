@@ -62,6 +62,7 @@ for(lib, customLibs) {
             }
         }
         unix:!macx {
+            LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
             PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
             QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
         }
