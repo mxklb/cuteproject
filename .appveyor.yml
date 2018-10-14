@@ -9,6 +9,8 @@ environment:
     - tbs_arch: "x32"
       tbs_tools: "mingw"
       tbs_static_runtime: 0
+    allow_failures:
+      - platform: x32
 
 branches:
   except:

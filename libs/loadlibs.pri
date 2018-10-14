@@ -58,7 +58,7 @@ for(lib, customLibs) {
             }
             gcc {
                 LIBS += -L$${OUTDIR}/$${WINDIR}/ -l$${LIBNAME}
-                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
+                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
             }
         }
         unix:!macx {
