@@ -12,10 +12,7 @@ environment:
 
 matrix:
   allow_failures:
-    - platform: x32
-      configuration: Debug
-    - platform: x32
-      configuration: Release
+    - tbs_tools: "mingw"
 
 branches:
   except:
