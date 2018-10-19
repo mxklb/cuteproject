@@ -55,13 +55,13 @@ for(lib, customLibs) {
             msvc {
                 LIBS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
                 PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
-                message(msvc setup for lib --> $${LIBNAME}.$${LIB_EXTENSION})
             }
             gcc {
-                LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
-                PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-                QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
-                message(gcc setup for lib --> lib$${LIBNAME}.$${LIB_EXTENSION})
+                #LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
+                #PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
+                #QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
+                #message(gcc setup for lib --> lib$${LIBNAME}.$${LIB_EXTENSION})
+                BUILD_TIME = $$system("dir")
             }
         }
         unix:!macx {
