@@ -57,11 +57,11 @@ for(lib, customLibs) {
                 PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
             }
             gcc {
-                #LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
-                #PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-                #QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
-                #message(gcc setup for lib --> lib$${LIBNAME}.$${LIB_EXTENSION})
-                BUILD_TIME = $$system("dir")
+                LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
+                PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
+                QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
+                BUILD_DIR = $$system("dir")
+                message(gcc setup for lib --> $${BUILD_DIR} lib$${LIBNAME}.$${LIB_EXTENSION})
             }
         }
         unix:!macx {
