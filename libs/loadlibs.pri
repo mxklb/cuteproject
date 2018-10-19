@@ -59,7 +59,7 @@ for(lib, customLibs) {
             }
             gcc {
                 LIBS += -L$${OUTDIR}/$${WINDIR}/ -l$${LIBNAME}
-                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
+                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
                 QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR/$$WINDIR\'"
                 message(gcc setup for lib --> lib$${LIBNAME}.$${LIB_EXTENSION})
             }
