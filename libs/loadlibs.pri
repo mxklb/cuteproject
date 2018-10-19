@@ -58,9 +58,9 @@ for(lib, customLibs) {
                 message(msvc setup for lib --> $${LIBNAME}.$${LIB_EXTENSION})
             }
             gcc {
-                LIBS += -L$${OUTDIR}/$${WINDIR}/ -llib$${LIBNAME}
-                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-                QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR/$$WINDIR\'"
+                LIBS += -L$${OUTDIR}/ -l$${LIBNAME}
+                PRE_TARGETDEPS += $${OUTDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
+                QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
                 message(gcc setup for lib --> lib$${LIBNAME}.$${LIB_EXTENSION})
             }
         }
