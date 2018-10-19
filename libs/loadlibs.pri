@@ -55,10 +55,12 @@ for(lib, customLibs) {
             msvc {
                 LIBS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
                 PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
+                message(msvc setup for lib --> $${LIBNAME}.$${LIB_EXTENSION})
             }
             gcc {
                 LIBS += -L$${OUTDIR}/$${WINDIR}/ -l$${LIBNAME}
-                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
+                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
+                message(gcc setup for lib --> $${LIBNAME}.$${LIB_EXTENSION})
             }
         }
         unix:!macx {
