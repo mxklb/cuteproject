@@ -59,8 +59,9 @@ for(lib, customLibs) {
             gcc {
                 LIBS += -L$${OUTDIR}/$${WINDIR}/ -l$${LIBNAME}
                 PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-                #QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'"
+                QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'/\'$$WINDIR\'"
                 BUILD_DIR = $$system("dir")
+                message($${BUILD_DIR})
             }
         }
         unix:!macx {
