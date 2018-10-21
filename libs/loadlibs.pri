@@ -39,6 +39,9 @@ for(lib, customLibs) {
             isEmpty(LIB_EXTENSION) {
                 LIB_EXTENSION = lib
             }
+            gcc {
+                LIB_EXTENSION = dll
+            }
         }
         #message($${LIB_EXTENSION})
 
@@ -57,11 +60,8 @@ for(lib, customLibs) {
                 PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
             }
             gcc {
-                LIBS += -L$${OUTDIR}/$${WINDIR}/ -l$${LIBNAME}
-                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
-                QMAKE_LFLAGS += "-Wl,-rpath,\'$$OUTDIR\'/\'$$WINDIR\'"
-                BUILD_DIR = $$system("dir")
-                message($${BUILD_DIR})
+                LIBS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
+                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
             }
         }
         unix:!macx {
