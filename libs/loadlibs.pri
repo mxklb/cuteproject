@@ -39,9 +39,6 @@ for(lib, customLibs) {
             isEmpty(LIB_EXTENSION) {
                 LIB_EXTENSION = lib
             }
-            gcc {
-                LIB_EXTENSION = dll
-            }
         }
         #message($${LIB_EXTENSION})
 
@@ -61,7 +58,7 @@ for(lib, customLibs) {
             }
             gcc {
                 LIBS += -L$${OUTDIR}/$${WINDIR}/ -l$${LIBNAME}
-                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/$${LIBNAME}.$${LIB_EXTENSION}
+                PRE_TARGETDEPS += $${OUTDIR}/$${WINDIR}/lib$${LIBNAME}.$${LIB_EXTENSION}
             }
         }
         unix:!macx {
