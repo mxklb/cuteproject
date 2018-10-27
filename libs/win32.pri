@@ -5,3 +5,5 @@ CONFIG(debug, debug|release) {
 CONFIG(release, debug|release) {
     WINDIR = release
 }
+
+UI_DIR = $${WINDIR}
