@@ -20,7 +20,7 @@ branches:
 
 init:
   - set BUILD_TYPE=release
-  - set PATH=%PATH%;C:\Qt\Tools\QtCreator\bin;
+  - set PATH=%PATH%;C:\Qt\Tools\QtCreator\bin
 
 install:
   - git clean -fdX
@@ -31,8 +31,8 @@ build:
 
 build_script:
   - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
-  - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] SET PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;
-  - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x32] SET PATH=%PATH%;C:\Qt\5.9\mingw53_32\bin;C:\MinGW\bin;
+  - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] SET PATH=%PATH%;C:\Qt\5.9\msvc2015\bin
+  - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x32] SET PATH=%PATH%;C:\Qt\5.9\mingw53_32\bin;C:\MinGW\bin
   - echo %PATH%
   - echo "catchTests=false" > globals.pri
   - qmake cuteproject.pro -r CONFIG+=%BUILD_TYPE%
