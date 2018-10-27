@@ -36,6 +36,7 @@ build_script:
   - echo "catchTests=false" > globals.pri
   - qmake cuteproject.pro -r CONFIG+=%BUILD_TYPE%
   - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x32] jom distclean
+  - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x32] qmake cuteproject.pro -r CONFIG+=%BUILD_TYPE%
   - jom
   - jom clean
 
