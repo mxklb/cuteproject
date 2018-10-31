@@ -19,7 +19,6 @@ branches:
     - osx-deploy
 
 init:
-  - git clean -fdX
   - set BUILD_TYPE=release
   - set PATH=%PATH%;C:\Qt\Tools\QtCreator\bin;
   - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x32] set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin;C:\Qt\5.9.5\mingw53_32\bin;
@@ -28,6 +27,7 @@ init:
 
 install:
   - git submodule update --init --recursive
+  - git clean -fdX
 
 build_script:
   - echo "catchTests=false" > globals.pri
