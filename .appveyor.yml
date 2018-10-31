@@ -6,7 +6,7 @@ environment:
       tbs_tools: "msvc14"
       tbs_static_runtime: 0
 
-    - tbs_arch: "x32"
+    - tbs_arch: "x64"
       tbs_tools: "mingw"
       tbs_static_runtime: 0
 
@@ -21,9 +21,9 @@ branches:
 init:
   - set BUILD_TYPE=release
   - set PATH=%PATH%;C:\Qt\Tools\QtCreator\bin;
-  - if [%tbs_tools%]==[mingw] if [%tbs_arch%]==[x32] set PATH=%PATH%;C:\Qt\Tools\mingw492_32\bin;C:\Qt\5.6.3\mingw49_32\bin;
-  - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
-  - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] set PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;
+  - if [%tbs_tools%]==[mingw] set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin;C:\Qt\5.9.5\mingw53_32\bin;
+  - if [%tbs_tools%]==[msvc14] call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+  - if [%tbs_tools%]==[msvc14] set PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;
 
 install:
   - git submodule update --init --recursive
