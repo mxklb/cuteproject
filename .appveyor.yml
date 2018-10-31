@@ -26,9 +26,6 @@ install:
   - git clean -fdX
   - git submodule update --init --recursive
 
-build:
-  - verbosity: detailed #quiet|minimal|normal|detailed
-
 build_script:
   - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
   - if [%tbs_tools%]==[msvc14] if [%tbs_arch%]==[x64] SET PATH=%PATH%;C:\Qt\5.9\msvc2015\bin;
