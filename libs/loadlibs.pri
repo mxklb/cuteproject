@@ -39,6 +39,9 @@ for(lib, customLibs) {
             isEmpty(LIB_EXTENSION) {
                 LIB_EXTENSION = lib
             }
+            gcc {
+                LIB_EXTENSION = a
+            }
         }
         #message($${LIB_EXTENSION})
 
