@@ -22,4 +22,4 @@ wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/contin
 chmod a+x linuxdeployqt-continuous-x86_64.AppImage
 
 # Build the cuteproject-x86_64.AppImage
-./linuxdeployqt-continuous-x86_64.AppImage ../app/cuteproject -appimage -extra-plugins=svg -verbose=1
+./linuxdeployqt-continuous-x86_64.AppImage ../app/cuteproject -appimage -bundle-non-qt-libs -verbose=2

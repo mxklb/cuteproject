@@ -46,10 +46,10 @@ deploy_appimage:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
     - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
-    - mv pkgs/cuteproject-*.AppImage .
+    - mv pkgs/cuteproject-* .
   artifacts:
     paths:
-      - cuteproject-*.AppImage
+      - cuteproject-*
     name: "cuteproject-x86_64"
 
 deploy_trusty:
