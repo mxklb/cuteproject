@@ -14,7 +14,7 @@ IFS='.' read -a semver <<< "${versions[0]}"
 
 # Set version if untagged ..
 if [ -z "${semver[0]}" ]; then
-  version="0.1-0"
+  version="1.0-0"
 else
   version=$(echo "${semver[0]}.${semver[1]}-${semver[2]}")
 fi
