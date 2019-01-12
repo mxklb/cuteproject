@@ -17,3 +17,5 @@ AppRun
 release
 debug
 *.rc
+pkgs/deb/app/version
+

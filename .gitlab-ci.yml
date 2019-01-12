@@ -45,6 +45,7 @@ deploy_appimage:
     - echo "catchTests=false" > globals.pri
     - qmake cuteproject.pro -r CONFIG+=release
     - make
+    - chmod +x pkgs/version.sh
     - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
     - mv pkgs/cuteproject-* .
   artifacts:
@@ -59,6 +60,7 @@ deploy_trusty:
     - master
   script:
     - export USER=$GITLAB_USER_LOGIN
+    - chmod +x pkgs/version.sh
     - chmod +x pkgs/debian.sh && pkgs/debian.sh
     - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
@@ -72,6 +74,7 @@ deploy_xenial:
   only:
     - master
   script:
+    - chmod +x pkgs/version.sh
     - chmod +x pkgs/debian.sh && pkgs/debian.sh
     - mv pkgs/deb/cuteproject-*.deb .
   artifacts:

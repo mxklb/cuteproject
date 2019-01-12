@@ -7,8 +7,10 @@ cd "$scriptPath"
 # Set package maintainer
 export LOGNAME=$USER
 
-# Get version info from file
-version=$(cat deb/app/version)
+# Create deb/app/version file
+version=$($scriptPath/version.sh)
+echo "$version" | tee deb/app/version
+
 majver=${version:0:3}
 pkgname="cuteproject"
 
@@ -17,11 +19,13 @@ mkdir deb/$pkgname-$version
 mkdir deb/$pkgname-$version/app
 mkdir deb/$pkgname-$version/libs
 mkdir deb/$pkgname-$version/img
+mkdir deb/$pkgname-$version/.git
 
 # Copy plain sources files (qt/qmake .pro project folder)
 cp -r ../app/* deb/$pkgname-$version/app
 cp -r ../libs/* deb/$pkgname-$version/libs
 cp -r ../img/* deb/$pkgname-$version/img
+cp -r ../.git/* deb/$pkgname-$version/.git
 cp ../globals.pri deb/$pkgname-$version
 cp ../alltests.pri deb/$pkgname-$version
 cp ../cuteproject.pro deb/$pkgname-$version

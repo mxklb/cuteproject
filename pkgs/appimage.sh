@@ -4,7 +4,10 @@ scriptPath=`pwd`
 popd > /dev/null
 cd "$scriptPath"
 
-version="1.0"
+# Get semantic version number
+versions=$($scriptPath/version.sh)
+IFS='-' read -a semver <<< "$versions"
+version="${semver[0]}"
 
 # Prepare some files for appimage creation
 cp appimage/cuteproject.desktop appimage/app.desktop

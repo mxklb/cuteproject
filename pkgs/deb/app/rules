@@ -12,5 +12,5 @@ export QT_SELECT := qt5
 # Delete rpath linker settings
 override_dh_auto_build:
 	dh_auto_build
-	find . -iname "*.so" | xargs -L 1 chrpath -l | grep RPATH | awk '{print $$1;}' | sed 's/.$$//' | xargs -L 1 chrpath -d
-	chrpath -d app/cuteproject
+#	find . -iname "*.so" | xargs -L 1 chrpath -l | grep RPATH | awk '{print $$1;}' | sed 's/.$$//' | xargs -L 1 chrpath -d
+#	chrpath -d app/cuteproject
