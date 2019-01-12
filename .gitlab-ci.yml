@@ -7,7 +7,7 @@ stages:
 
 before_script:
 - apt-get update -y
-- apt-get install -y wget xvfb chrpath libfuse-dev python3 python3-pip
+- apt-get install -y wget xvfb chrpath libfuse-dev
 
 debug_tests:
   stage: build
@@ -89,15 +89,12 @@ release_appimage:
   only:
     - tags
   script:
-    - export USER=$GITLAB_USER_LOGIN
     - echo "catchTests=false" > globals.pri
     - qmake cuteproject.pro -r CONFIG+=release
     - make
     - chmod +x pkgs/version.sh
     - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
     - mv pkgs/cuteproject-* .
-    - pip3 install gitlab_release
-    - python3 -m gitlab_release $PRIVATE_TOKEN *.zip
   artifacts:
     paths:
       - cuteproject-*
