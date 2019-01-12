@@ -3,10 +3,11 @@ image: mxklb/docker-qt5-deb
 stages:
 - build
 - deploy
+- release
 
 before_script:
 - apt-get update -y
-- apt-get install -y wget xvfb chrpath libfuse-dev
+- apt-get install -y wget xvfb chrpath libfuse-dev python3 python3-pip
 
 debug_tests:
   stage: build
@@ -81,3 +82,23 @@ deploy_xenial:
     paths:
       - cuteproject-*.deb
     name: "cuteproject-xenial_amd64"
+
+release_appimage:
+  stage: release
+  image: mxklb/docker-qt5-deb:trusty
+  only:
+    - tags
+  script:
+    - export USER=$GITLAB_USER_LOGIN
+    - echo "catchTests=false" > globals.pri
+    - qmake cuteproject.pro -r CONFIG+=release
+    - make
+    - chmod +x pkgs/version.sh
+    - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
+    - mv pkgs/cuteproject-* .
+    - pip3 install gitlab_release
+    - python3 -m gitlab_release $PRIVATE_TOKEN *.zip
+  artifacts:
+    paths:
+      - cuteproject-*
+    name: "cuteproject-x86_64"
