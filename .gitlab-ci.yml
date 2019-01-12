@@ -54,6 +54,23 @@ deploy_appimage:
       - cuteproject-*
     name: "cuteproject-x86_64"
 
+release_appimage:
+  stage: deploy
+  image: mxklb/docker-qt5-deb:trusty
+  only:
+    - tags
+  script:
+    - echo "catchTests=false" > globals.pri
+    - qmake cuteproject.pro -r CONFIG+=release
+    - make
+    - chmod +x pkgs/version.sh
+    - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
+    - mv pkgs/cuteproject-* .
+  artifacts:
+    paths:
+      - cuteproject-*
+    name: "cuteproject-x86_64"
+
 deploy_trusty:
   stage: deploy
   image: mxklb/docker-qt5-deb:trusty
@@ -82,23 +99,6 @@ deploy_xenial:
     paths:
       - cuteproject-*.deb
     name: "cuteproject-xenial_amd64"
-
-release_appimage:
-  stage: release
-  image: mxklb/docker-qt5-deb:trusty
-  only:
-    - tags
-  script:
-    - echo "catchTests=false" > globals.pri
-    - qmake cuteproject.pro -r CONFIG+=release
-    - make
-    - chmod +x pkgs/version.sh
-    - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
-    - mv pkgs/cuteproject-* .
-  artifacts:
-    paths:
-      - cuteproject-*
-    name: "cuteproject-x86_64"
 
 publish_releases:
   stage: release
