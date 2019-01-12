@@ -9,6 +9,9 @@ versions=$($scriptPath/version.sh)
 IFS='-' read -a semver <<< "$versions"
 version="${semver[0]}"
 
+# Set environment (used by linuxdeployqt)
+export VERSION="$versions"
+
 # Prepare some files for appimage creation
 cp appimage/cuteproject.desktop appimage/app.desktop
 sed -i '2s/.*/Version='$version'/' appimage/app.desktop

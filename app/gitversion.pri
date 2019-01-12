@@ -1,5 +1,5 @@
 # If there is no version tag in git this one will be used
-VERSION = 0.1.0
+VERSION = 1.0.0
 
 # Need to discard STDERR so get path to NULL device
 win32 {
