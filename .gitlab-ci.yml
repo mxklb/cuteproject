@@ -99,11 +99,3 @@ deploy_xenial:
     paths:
       - cuteproject-*.deb
     name: "cuteproject-xenial_amd64"
-
-publish_releases:
-  stage: release
-  image: inetprocess/gitlab-release
-  only:
-    - tags
-  script:
-    - gitlab-release --message 'Release $CI_COMMIT_TAG' cuteproject-*
