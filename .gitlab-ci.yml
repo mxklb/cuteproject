@@ -55,7 +55,7 @@ deploy_appimage:
     name: "cuteproject-x86_64"
 
 release_appimage:
-  stage: deploy
+  stage: release
   image: mxklb/docker-qt5-deb:trusty
   only:
     - tags

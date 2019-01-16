@@ -1,6 +1,7 @@
 #!/bin/bash
 # This script prints a sematic version number in the form: "X.Y-Z"
-# The version number is fetched from git tags!
+# The version number is fetched from the latest git tag!
+# Note: This script needs/depends on git.
 
 pushd `dirname $0` > /dev/null
 scriptPath=`pwd`
