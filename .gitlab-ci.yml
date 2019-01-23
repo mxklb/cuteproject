@@ -34,7 +34,7 @@ release_tests:
     - make
 
 # Release build (no tests)
-release:
+release_build:
   stage: build
   script:
     - echo "catchTests=false" > globals.pri
@@ -47,6 +47,7 @@ release:
   only:
     - master
   script:
+    - export USER=$GITLAB_USER_LOGIN
     - chmod +x pkgs/version.sh
     - chmod +x pkgs/debian.sh && pkgs/debian.sh
     - mv pkgs/deb/cuteproject-*.deb .
@@ -54,16 +55,14 @@ release:
     paths:
       - cuteproject-*.deb
 
-deploy_xenial:
+debian_xenial:
   extends: .build_debian
   image: mxklb/docker-qt5-deb:xenial
   artifacts:
     name: "cuteproject-xenial_amd64"
 
-deploy_trusty:
+debian_trusty:
   extends: .build_debian
-  before_script:
-    - export USER=$GITLAB_USER_LOGIN
   image: mxklb/docker-qt5-deb:trusty
   artifacts:
     name: "cuteproject-trusty_amd64"
@@ -84,12 +83,12 @@ deploy_trusty:
       - cuteproject-*
     name: "cuteproject-x86_64"
 
-deploy_appimage:
+appimage_latest:
   extends: .build_appimage
   only:
     - master
 
-release_appimage:
+appimage_stable:
   extends: .build_appimage
   only:
     - tags
