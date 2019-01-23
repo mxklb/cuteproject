@@ -47,7 +47,7 @@ release_build:
   only:
     - master
   script:
-    - export USER=$GITLAB_USER_LOGIN
+    - chmod +x pkgs/deb/ci-config.sh && pkgs/deb/ci-config.sh
     - chmod +x pkgs/version.sh
     - chmod +x pkgs/debian.sh && pkgs/debian.sh
     - mv pkgs/deb/cuteproject-*.deb .
