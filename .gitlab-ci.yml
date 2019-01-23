@@ -1,6 +1,7 @@
 image: mxklb/docker-qt5-deb
 
 stages:
+- tests
 - build
 - deploy
 - release
@@ -9,8 +10,9 @@ before_script:
 - apt-get update -y
 - apt-get install -y wget xvfb chrpath libfuse-dev
 
+# Debug build (++ test coverage)
 debug_tests:
-  stage: build
+  stage: tests
   script:
     - qmake cuteproject.pro -r CONFIG+=debug
     - make
@@ -24,12 +26,14 @@ debug_tests:
       - coverage.tar.gz
     name: "test_coverage"
 
+# Release build (++ tests)
 release_tests:
-  stage: build
+  stage: tests
   script:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
 
+# Release build (no tests)
 release:
   stage: build
   script:
@@ -37,65 +41,55 @@ release:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
 
-deploy_appimage:
+# Build & Deploy debian packages
+.build_debian:
   stage: deploy
-  image: mxklb/docker-qt5-deb:trusty
   only:
     - master
   script:
-    - echo "catchTests=false" > globals.pri
-    - qmake cuteproject.pro -r CONFIG+=release
-    - make
-    - chmod +x pkgs/version.sh
-    - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
-    - mv pkgs/cuteproject-* .
-  artifacts:
-    paths:
-      - cuteproject-*
-    name: "cuteproject-x86_64"
-
-release_appimage:
-  stage: release
-  image: mxklb/docker-qt5-deb:trusty
-  only:
-    - tags
-  script:
-    - echo "catchTests=false" > globals.pri
-    - qmake cuteproject.pro -r CONFIG+=release
-    - make
-    - chmod +x pkgs/version.sh
-    - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
-    - mv pkgs/cuteproject-* .
-  artifacts:
-    paths:
-      - cuteproject-*
-    name: "cuteproject-x86_64"
-
-deploy_trusty:
-  stage: deploy
-  image: mxklb/docker-qt5-deb:trusty
-  only:
-    - master
-  script:
-    - export USER=$GITLAB_USER_LOGIN
     - chmod +x pkgs/version.sh
     - chmod +x pkgs/debian.sh && pkgs/debian.sh
     - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     paths:
       - cuteproject-*.deb
-    name: "cuteproject-trusty_amd64"
 
 deploy_xenial:
-  stage: deploy
+  extends: .build_debian
   image: mxklb/docker-qt5-deb:xenial
-  only:
-    - master
+  artifacts:
+    name: "cuteproject-xenial_amd64"
+
+deploy_trusty:
+  extends: .build_debian
+  before_script:
+    - export USER=$GITLAB_USER_LOGIN
+  image: mxklb/docker-qt5-deb:trusty
+  artifacts:
+    name: "cuteproject-trusty_amd64"
+
+# Build & Deploy .AppImage's
+.build_appimage:
+  stage: deploy
+  image: mxklb/docker-qt5-deb:trusty
   script:
+    - echo "catchTests=false" > globals.pri
+    - qmake cuteproject.pro -r CONFIG+=release
+    - make
     - chmod +x pkgs/version.sh
-    - chmod +x pkgs/debian.sh && pkgs/debian.sh
-    - mv pkgs/deb/cuteproject-*.deb .
+    - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
+    - mv pkgs/cuteproject-* .
   artifacts:
     paths:
-      - cuteproject-*.deb
-    name: "cuteproject-xenial_amd64"
+      - cuteproject-*
+    name: "cuteproject-x86_64"
+
+deploy_appimage:
+  extends: .build_appimage
+  only:
+    - master
+
+release_appimage:
+  extends: .build_appimage
+  only:
+    - tags
