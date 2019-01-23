@@ -40,7 +40,7 @@ cd deb/$pkgname-$version
 echo "catchTests=false" > globals.pri
 
 # Initialize debian configurations
-dh_make --createorig --yes --single --email dev@xamblak.de --copyright mit
+dh_make --createorig --yes --single --email mxklb@protonmail.com --copyright mit
 
 # Overwrite defaults with custom configs
 cp ../app/app.install debian/$pkgname-$majver.install

@@ -46,11 +46,6 @@ release_build:
   stage: deploy
   only:
     - master
-  script:
-    - chmod +x pkgs/deb/ci-config.sh && pkgs/deb/ci-config.sh
-    - chmod +x pkgs/version.sh
-    - chmod +x pkgs/debian.sh && pkgs/debian.sh
-    - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     paths:
       - cuteproject-*.deb
@@ -58,12 +53,21 @@ release_build:
 debian_xenial:
   extends: .build_debian
   image: mxklb/docker-qt5-deb:xenial
+  script:
+    - chmod +x pkgs/version.sh
+    - chmod +x pkgs/debian.sh && pkgs/debian.sh
+    - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     name: "cuteproject-xenial_amd64"
 
 debian_trusty:
   extends: .build_debian
   image: mxklb/docker-qt5-deb:trusty
+  script:
+    - export USER=$GITLAB_USER_LOGIN
+    - chmod +x pkgs/version.sh
+    - chmod +x pkgs/debian.sh && pkgs/debian.sh
+    - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     name: "cuteproject-trusty_amd64"
 

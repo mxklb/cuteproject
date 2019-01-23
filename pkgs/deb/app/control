@@ -1,7 +1,7 @@
 Source: app-M.m
 Section: sound
 Priority: optional
-Maintainer: mxklb
+Maintainer: mxklb <mxklb@protonmail.com>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
 Homepage: https://github.com/mxklb/cuteproject
