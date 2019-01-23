@@ -1,7 +1,7 @@
 Source: app-M.m
 Section: sound
 Priority: optional
-Maintainer: xam <dev@xamblak.de>
+Maintainer: mxklb
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
 Homepage: https://github.com/mxklb/cuteproject
@@ -11,6 +11,6 @@ Vcs-Browser: https://github.com/mxklb/cuteproject
 Package: app-M.m
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-#Build-Depends: 
+#Build-Depends:
 Description: A simple qmake test app
  This is just a test for debian package deployment with qmake and qt project.

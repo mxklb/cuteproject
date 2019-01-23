@@ -5,8 +5,7 @@
 ubuntu=$(lsb_release -c | awk '{ print $NF }')
 
 if [ "$ubuntu" = "trusty" ]; then
-  echo "hid it .."
-  export USER=$GITLAB_USER_LOGIN
-  export DEBFULLNAME=$USER
+  USER=$GITLAB_USER_LOGIN
+  DEBFULLNAME=$GITLAB_USER_LOGIN
 fi
 echo $USER
