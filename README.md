@@ -6,7 +6,7 @@ It's based on single libs (modules) with automated tests, coverage & deployment.
 
 This is a C++ qmake project template with automated unit tests execution (uses [catch](https://github.com/philsquared/Catch)). Tests are implemented in separated executables (subdirs) which get executed during compilation incrementally. Compilation fails if any test fails. This is the ideal precondition for test driven development. Deployable packages/installers are build by CI servers.
 
-This is meant to be an easy extendable qmake subdirs example project.
+This is meant to be an easy extendable qmake subdirs example/template project.
 
 [![Build Status](https://travis-ci.org/mxklb/cuteproject.svg?branch=master)](https://travis-ci.org/mxklb/cuteproject)
 [![codecov](https://codecov.io/gh/mxklb/cuteproject/branch/master/graph/badge.svg)](https://codecov.io/gh/mxklb/cuteproject)
@@ -19,7 +19,7 @@ Download latest development binary version:
 - [cuteproject-linux.x86_64.AppImage](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=appimage_latest)
 - [cuteproject.ubuntu14.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=debian_trusty)
 - [cuteproject.ubuntu16.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=debian_xenial)
-- [cuteproject.macOS-10.11.dmg](https://rawgit.com/mxklb/cuteproject/osx-deploy/cuteproject.dmg)
+- [cuteproject.macOS-latest.dmg](https://rawgit.com/mxklb/cuteproject/osx-deploy/cuteproject.dmg)
 - [cuteproject.windows_x86.zip](https://ci.appveyor.com/api/projects/mxklb/cuteproject/artifacts/cuteproject-windows_x86.zip?branch=master)
 
 

@@ -94,5 +94,6 @@ appimage_latest:
 
 appimage_stable:
   extends: .build_appimage
+  stage: release
   only:
     - tags
