@@ -5,12 +5,10 @@ environment:
     - tbs_arch: "x64"
       tbs_tools: "msvc14"
       tbs_static_runtime: 0
-      APPVEYOR_JOB_NAME: "msvc14_x64"
 
     - tbs_arch: "x64"
       tbs_tools: "mingw"
       tbs_static_runtime: 0
-      APPVEYOR_JOB_NAME: "mingw_x64"
 
 matrix:
   allow_failures:
