@@ -17,8 +17,8 @@ This is meant to be an easy extendable qmake subdirs example/template project.
 
 Download latest development binary version:
 - [cuteproject-linux.x86_64.AppImage](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=appimage_latest)
-- [cuteproject.ubuntu14.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=debian_trusty)
-- [cuteproject.ubuntu16.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=debian_xenial)
+- [cuteproject.ubuntu14.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=debian_trusty_latest)
+- [cuteproject.ubuntu16.04_amd64.deb](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=debian_xenial_latest)
 - [cuteproject.macOS-latest.dmg](https://rawgit.com/mxklb/cuteproject/osx-deploy/cuteproject.dmg)
 - [cuteproject.windows_x86.zip](https://ci.appveyor.com/api/projects/mxklb/cuteproject/artifacts/cuteproject-windows_x86.zip?branch=master&job=Environment%3A+tbs_arch%3Dx64%2C+tbs_tools%3Dmsvc14%2C+tbs_static_runtime%3D0)
 
