@@ -10,9 +10,11 @@ before_script:
 - apt-get update -y
 - apt-get install -y wget xvfb chrpath libfuse-dev
 
-# Debug build (++ test coverage)
+## 1 Debug build (++ test coverage)
 debug_tests:
   stage: tests
+  except:
+    - tags
   script:
     - qmake cuteproject.pro -r CONFIG+=debug
     - make
@@ -26,14 +28,14 @@ debug_tests:
       - coverage.tar.gz
     name: "test_coverage"
 
-# Release build (++ tests)
+## 2 Release build (++ tests)
 release_tests:
   stage: tests
   script:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
 
-# Release build (no tests)
+## 3 Release build (no tests)
 release_build:
   stage: build
   script:
@@ -41,16 +43,14 @@ release_build:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
 
-# Build & Deploy debian packages
+## 4 Build & Deploy debian packages
 .build_debian:
   stage: deploy
-  only:
-    - master
   artifacts:
     paths:
       - cuteproject-*.deb
 
-debian_xenial:
+.build_debian_xenial:
   extends: .build_debian
   image: mxklb/docker-qt5-deb:xenial
   script:
@@ -60,7 +60,7 @@ debian_xenial:
   artifacts:
     name: "cuteproject-xenial_amd64"
 
-debian_trusty:
+.build_debian_trusty:
   extends: .build_debian
   image: mxklb/docker-qt5-deb:trusty
   script:
@@ -71,7 +71,35 @@ debian_trusty:
   artifacts:
     name: "cuteproject-trusty_amd64"
 
-# Build & Deploy .AppImage's
+# Continuous deployments
+debian_trusty_latest:
+  extends: .build_debian_trusty
+  only:
+    - master
+
+debian_xenial_latest:
+  extends: .build_debian_xenial
+  only:
+    - master
+
+# Release deployments
+debian_trusty_stable:
+  extends: .build_debian_trusty
+  stage: release
+  only:
+    - tags
+  except:
+    - /^(?!master).+@/
+
+debian_xenial_stable:
+  extends: .build_debian_xenial
+  stage: release
+  only:
+    - tags
+  except:
+    - /^(?!master).+@/
+
+## 5 Build & Deploy .AppImage's
 .build_appimage:
   stage: deploy
   image: mxklb/docker-qt5-deb:trusty
@@ -87,13 +115,17 @@ debian_trusty:
       - cuteproject-*
     name: "cuteproject-x86_64"
 
+# Continuous deployment
 appimage_latest:
   extends: .build_appimage
   only:
     - master
 
+# Release deployment
 appimage_stable:
   extends: .build_appimage
   stage: release
   only:
     - tags
+  except:
+    - /^(?!master).+@/
