@@ -1,3 +1,4 @@
+# Build OS = Ubuntu LTS (latest)
 image: mxklb/docker-qt5-deb
 
 stages:
@@ -11,7 +12,7 @@ before_script:
 - apt-get install -y wget xvfb chrpath libfuse-dev
 
 ## 1 Debug build (++ test coverage)
-debug_tests:
+.debug_build_with_tests:
   stage: tests
   except:
     - tags
@@ -27,6 +28,21 @@ debug_tests:
       - coverage.pdf
       - coverage.tar.gz
     name: "test_coverage"
+
+debug_tests:
+  extends: .debug_build_with_tests
+
+# Test latest Ubuntu (rolling)
+debug_tests_rolling:
+  extends: .debug_build_with_tests
+  image: mxklb/docker-qt5-deb:rolling
+  allow_failure: true
+
+# Test bleeding Ubuntu (devel)
+debug_tests_devel:
+  extends: .debug_build_with_tests
+  image: mxklb/docker-qt5-deb:devel
+  allow_failure: true
 
 ## 2 Release build (++ tests)
 release_tests:
