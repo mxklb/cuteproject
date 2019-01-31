@@ -20,7 +20,6 @@ before_script:
     - qmake cuteproject.pro -r CONFIG+=debug
     - make
 
-# Test LTS Ubuntu (latest)
 debug_tests:
   extends: .debug_build_with_tests
 
@@ -98,13 +97,9 @@ release_build:
 # Continuous deployments
 debian_trusty_latest:
   extends: .build_debian_trusty
-  only:
-    - master
 
 debian_xenial_latest:
   extends: .build_debian_xenial
-  only:
-    - master
 
 # Release deployments
 debian_trusty_stable:
@@ -142,8 +137,6 @@ debian_xenial_stable:
 # Continuous deployment
 appimage_latest:
   extends: .build_appimage
-  only:
-    - master
 
 # Release deployment
 appimage_stable:
