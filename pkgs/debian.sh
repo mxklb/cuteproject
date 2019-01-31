@@ -4,10 +4,10 @@ scriptPath=`pwd`
 popd > /dev/null
 cd "$scriptPath"
 
-# Set github & app infos
-ghUser="mxklb"
-ghProject="cuteproject"
+# Set some app infos
 appName="cuteproject"
+eMail="mxklb@protonmail.com"
+ghUser="mxklb"
 
 # Set package maintainer
 export LOGNAME=$USER
@@ -45,7 +45,7 @@ cd deb/$pkgname-$version
 echo "catchTests=false" > globals.pri
 
 # Initialize debian configurations
-dh_make --createorig --yes --single --email mxklb@protonmail.com --copyright mit
+dh_make --createorig --yes --single --email $eMail --copyright mit
 
 # Overwrite defaults with custom configs
 cp ../app/app.install debian/$pkgname-$majver.install
@@ -54,10 +54,35 @@ cp ../app/menu debian
 cp ../app/rules debian
 cp ../app/dirs debian
 
-# Write source/package version info into the control file
+# Prepare the $pkgname.desktop file
+execPath="\/usr\/bin\/$pkgname"
+iconPath="\/usr\/share\/pixmaps\/$pkgname.svg"
 sed -i '2s/.*/Version='$majver'/' $pkgname.desktop
+sed -i '6s/.*/Name='$pkgname'/' $pkgname.desktop
+sed -i '8s/.*/Icon='$iconPath'/' $pkgname.desktop
+sed -i '9s/.*/Exec='$execPath'/' $pkgname.desktop
+
+# Prepare $pkgname-$majver.install file
+sed -i '1s/.*/app\/'$pkgname' usr\/bin/' debian/$pkgname-$majver.install
+sed -i '4s/.*/img\/'$pkgname'.svg usr\/share\/pixmaps/' debian/$pkgname-$majver.install
+sed -i '5s/.*/'$pkgname'.desktop usr\/share\/applications/' debian/$pkgname-$majver.install
+
+# Prepare the debian/control file
+ghProject="$appName"
+ghUrl="https:\/\/github.com\/$ghUser\/$ghProject"
 sed -i '1s/.*/Source: '$pkgname'-'$majver'/' debian/control
+sed -i '4s/.*/Maintainer: '$ghUser' \<'$eMail'\>/' debian/control
+sed -i '7s/.*/Homepage: '$ghUrl'/' debian/control
+sed -i '8s/.*/Vcs-Git: '$ghUrl'.git/' debian/control
+sed -i '9s/.*/Vcs-Browser: '$ghUrl'/' debian/control
 sed -i '11s/.*/Package: '$pkgname'-'$majver'/' debian/control
+
+# Prepare the debian/menu file
+sed -i 's/myapp/'$pkgname'/g' debian/menu
+sed -i 's/app-1.0-0/'$pkgname'-'$version'/g' debian/menu
+
+# Prepare the debian/rules file
+sed -i 's/myapp/'$pkgname'/g' debian/rules
 
 # Set proper rights
 #chmod -R -x+X *

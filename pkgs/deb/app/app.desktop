@@ -3,11 +3,9 @@ Version=M.m
 Type=Application
 Categories=Sound;Development;GTK;GNOME;
 Terminal=false
-Name="Cute Project App"
+Name="myapp"
 Comment="A simple qmake test app"
-Icon=/usr/share/pixmaps/cuteproject.svg
-Exec=/usr/bin/cuteproject
+Icon=/usr/share/pixmaps/myapp.svg
+Exec=/usr/bin/myapp
 StartupNotify=true
 Encoding=UTF-8
-
-Name[en_US]=cuteproject
