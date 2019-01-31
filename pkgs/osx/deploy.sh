@@ -11,7 +11,7 @@ popd > /dev/null
 cd $scriptPath
 
 appName="cuteproject"
-ghProject="cuteproject"
+ghProject="$appName"
 ghUser="mxklb"
 
 mkdir dmg

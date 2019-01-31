@@ -16,7 +16,7 @@ cd "$scriptPath"
 
 # Set essentials
 appName="cuteproject"
-libIdentifier="cuteproject/libs"
+libIdentifier="$appName/libs"
 
 # Set some paths
 libPath="$scriptPath/../libs"
