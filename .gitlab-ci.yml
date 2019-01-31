@@ -11,7 +11,7 @@ before_script:
 - apt-get update -y
 - apt-get install -y wget xvfb chrpath libfuse-dev
 
-## 1 Debug build (++ test coverage)
+## 1 Debug builds (++ test)
 .debug_build_with_tests:
   stage: tests
   except:
@@ -19,13 +19,21 @@ before_script:
   script:
     - qmake cuteproject.pro -r CONFIG+=debug
     - make
+
+# Test LTS Ubuntu (latest)
+debug_tests:
+  extends: .debug_build_with_tests
+
+# Debug build (++ test coverage)
+debug_tests_coverage:
+  extends: .debug_build_with_tests
+  script:
+    - qmake cuteproject.pro -r CONFIG+=debug
+    - make
     - gcovr -r . -e '.*extern.*' -e '.*moc_.*'
     - chmod +x lcov.sh && ./lcov.sh
     - mv coverage/*.pdf .
     - mv coverage/*.tar.gz .
-
-debug_tests:
-  extends: .debug_build_with_tests
   artifacts:
     paths:
       - coverage.pdf
