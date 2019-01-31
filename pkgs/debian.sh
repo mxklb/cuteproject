@@ -55,27 +55,21 @@ cp ../app/rules debian
 cp ../app/dirs debian
 
 # Prepare the $pkgname.desktop file
-execPath="\/usr\/bin\/$pkgname"
-iconPath="\/usr\/share\/pixmaps\/$pkgname.svg"
-sed -i '2s/.*/Version='$majver'/' $pkgname.desktop
-sed -i '6s/.*/Name='$pkgname'/' $pkgname.desktop
-sed -i '8s/.*/Icon='$iconPath'/' $pkgname.desktop
-sed -i '9s/.*/Exec='$execPath'/' $pkgname.desktop
+sed -i 's/M.m/'$version'/g' $pkgname.desktop
+sed -i 's/myapp/'$pkgname'/g' $pkgname.desktop
 
 # Prepare $pkgname-$majver.install file
-sed -i '1s/.*/app\/'$pkgname' usr\/bin/' debian/$pkgname-$majver.install
-sed -i '4s/.*/img\/'$pkgname'.svg usr\/share\/pixmaps/' debian/$pkgname-$majver.install
-sed -i '5s/.*/'$pkgname'.desktop usr\/share\/applications/' debian/$pkgname-$majver.install
+sed -i 's/myapp/'$pkgname'/g' debian/$pkgname-$majver.install
 
 # Prepare the debian/control file
 ghProject="$appName"
 ghUrl="https:\/\/github.com\/$ghUser\/$ghProject"
-sed -i '1s/.*/Source: '$pkgname'-'$majver'/' debian/control
 sed -i '4s/.*/Maintainer: '$ghUser' \<'$eMail'\>/' debian/control
 sed -i '7s/.*/Homepage: '$ghUrl'/' debian/control
 sed -i '8s/.*/Vcs-Git: '$ghUrl'.git/' debian/control
 sed -i '9s/.*/Vcs-Browser: '$ghUrl'/' debian/control
-sed -i '11s/.*/Package: '$pkgname'-'$majver'/' debian/control
+sed -i 's/myapp/'$pkgname'/g' debian/control
+sed -i 's/M.m/'$majver'/g' debian/control
 
 # Prepare the debian/menu file
 sed -i 's/myapp/'$pkgname'/g' debian/menu

@@ -16,9 +16,8 @@ export VERSION="$versions"
 
 # Prepare some files for appimage creation
 cp appimage/$appName.desktop appimage/app.desktop
-sed -i '2s/.*/Version='$version'/' appimage/app.desktop
-sed -i '6s/.*/Name='$appName'/' appimage/app.desktop
-sed -i '8s/.*/Icon='$appName'/' appimage/app.desktop
+sed -i 's/M.m/'$version'/g' appimage/app.desktop
+sed -i 's/myapp/'$appName'/g' appimage/app.desktop
 
 # Move some files into the app workspace
 mv appimage/app.desktop ../app/$appName.desktop
