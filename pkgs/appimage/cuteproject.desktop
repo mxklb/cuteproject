@@ -8,5 +8,3 @@ Comment="A simple qmake test app"
 Icon=cuteproject
 Exec=AppRun %F
 StartupNotify=true
-
-Name[en_US]=cuteproject

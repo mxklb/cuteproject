@@ -4,6 +4,11 @@ scriptPath=`pwd`
 popd > /dev/null
 cd "$scriptPath"
 
+# Set github & app infos
+ghUser="mxklb"
+ghProject="cuteproject"
+appName="cuteproject"
+
 # Set package maintainer
 export LOGNAME=$USER
 
@@ -12,7 +17,7 @@ version=$($scriptPath/version.sh)
 echo "$version" | tee deb/app/version
 
 majver=${version:0:3}
-pkgname="cuteproject"
+pkgname="$appName"
 
 # Create debian folder ($PACKAGE-$VERSION, f.e myapp-4.2-1)
 mkdir deb/$pkgname-$version
@@ -28,7 +33,7 @@ cp -r ../img/* deb/$pkgname-$version/img
 cp -r ../.git/* deb/$pkgname-$version/.git
 cp ../globals.pri deb/$pkgname-$version
 cp ../alltests.pri deb/$pkgname-$version
-cp ../cuteproject.pro deb/$pkgname-$version
+cp ../$appName.pro deb/$pkgname-$version
 
 # Copy other files (some desktop config)
 cp deb/app/app.desktop deb/$pkgname-$version/$pkgname.desktop
@@ -66,7 +71,7 @@ chmod -x debian/dirs
 sed -i '32,37d' debian/copyright
 sed -i '4,9d' debian/copyright
 sed -i '6d' debian/copyright
-sed -i '3s/.*/Source: <https:\/\/github.com\/mxklb\/cuteproject>/' debian/copyright
+sed -i '3s/.*/Source: <https:\/\/github.com\/'$ghUser'\/'$ghProject'>/' debian/copyright
 
 # Build the package
 dpkg-buildpackage -b -rfakeroot -us -uc -tc
