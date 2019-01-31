@@ -23,14 +23,14 @@ before_script:
     - chmod +x lcov.sh && ./lcov.sh
     - mv coverage/*.pdf .
     - mv coverage/*.tar.gz .
+
+debug_tests:
+  extends: .debug_build_with_tests
   artifacts:
     paths:
       - coverage.pdf
       - coverage.tar.gz
     name: "test_coverage"
-
-debug_tests:
-  extends: .debug_build_with_tests
 
 # Test latest Ubuntu (rolling)
 debug_tests_rolling:
