@@ -9,9 +9,9 @@ export QT_SELECT := qt5
 %:
 	dh $@
 
-# Disable uniform-compression
+# Force gzip compression
 override_dh_builddeb:
-	dh_builddeb -- --no-uniform-compression
+	dh_builddeb -- -Zgzip
 
 # Delete rpath linker settings
 override_dh_auto_build:
