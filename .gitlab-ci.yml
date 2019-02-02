@@ -9,7 +9,7 @@ stages:
 
 before_script:
 - apt-get update -y
-- apt-get install -y wget xvfb chrpath libfuse-dev
+- apt-get install -y wget xvfb chrpath debhelper libfuse-dev
 
 ## 1 Debug builds (++ test)
 .debug_build_with_tests:
@@ -69,8 +69,6 @@ release_build:
 ## 4 Build & Deploy debian packages
 .build_debian:
   stage: deploy
-  before_script:
-    - apt-get install -y debhelper
   artifacts:
     paths:
       - cuteproject-*.deb
