@@ -39,3 +39,6 @@ unix:!macx {
     target.path = $$[QT_INSTALL_PREFIX]/bin
     INSTALLS += target
 }
+
+include(gitversion.pri)
+message(Build $$TARGET v$$VERSION)

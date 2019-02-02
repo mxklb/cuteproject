@@ -2,7 +2,7 @@
 # Note: Use this after declaring HEADERS & SOURCE!
 TEMPLATE = lib
 CONFIG += shared
-win32:!gcc {
+win32 {
     CONFIG -= shared
     CONFIG += static
 }

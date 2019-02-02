@@ -21,8 +21,8 @@ init:
   - set PATH=%PATH%;C:\Qt\Tools\QtCreator\bin
 
 install:
-  - git clean -fdX
   - git submodule update --init --recursive
+  - git clean -fdX
 
 cache:
   #- packages

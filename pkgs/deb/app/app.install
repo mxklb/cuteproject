@@ -1,5 +1,5 @@
-app/cuteproject usr/bin
+app/myapp usr/bin
 libs/**/lib*.so usr/lib
 libs/**/lib*.so.* usr/lib
-img/cuteproject.svg usr/share/pixmaps
-cuteproject.desktop usr/share/applications
+img/myapp.svg usr/share/pixmaps
+myapp.desktop usr/share/applications

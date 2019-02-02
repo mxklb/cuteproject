@@ -15,13 +15,13 @@ popd > /dev/null
 cd "$scriptPath"
 
 # Set essentials
-binName="cuteproject"
-libIdentifier="cuteproject/libs"
+appName="cuteproject"
+libIdentifier="$appName/libs"
 
 # Set some paths
 libPath="$scriptPath/../libs"
-appPath="$scriptPath/../app/$binName.app"
-binPath="$appPath/Contents/MacOS/$binName"
+appPath="$scriptPath/../app/$appName.app"
+binPath="$appPath/Contents/MacOS/$appName"
 
 echo "Fix macdeployqt: Copy all needed qt frameworks .."
 
@@ -42,7 +42,7 @@ for ((i=0; i<$libCount; i++)); do
     cp -Ra $qtLibPath/${qtLibs[$i]}.framework $appFrameworksPath
 done
 
-echo "Setup custom $binName library dependencies ..."
+echo "Setup custom $appName library dependencies ..."
 
 # Use otool to grep libIdentifier => to get all custom linked frameworks
 linkedLibs=($(otool -L $binPath | grep $libIdentifier | awk '{print $1;}'))
@@ -80,8 +80,8 @@ executables=$(echo "${libBinaries[*]}")
 # Create a .dmg image (with Qt libs)
 echo "Creating the .dmg disk image ..."
 cd "$scriptPath/../app"
-macdeployqt "$binName.app" -dmg $executables -verbose=2 -always-overwrite
+macdeployqt "$appName.app" -dmg $executables -verbose=2 -always-overwrite
 
 # Modify/Optimize .dmg image
 chmod +x "$scriptPath/osx/dmg.sh"
-$scriptPath/osx/dmg.sh "$scriptPath/../app/$binName.dmg"
+$scriptPath/osx/dmg.sh "$scriptPath/../app/$appName.dmg"
