@@ -27,7 +27,7 @@ Download latest development version here:
 - [cuteproject.macOS-latest.dmg](https://cdn.jsdelivr.net/gh/mxklb/cuteproject@osx-deploy/cuteproject.dmg)
 - [cuteproject.windows_x86.zip](https://ci.appveyor.com/api/projects/mxklb/cuteproject/artifacts/cuteproject-windows_x86.zip?branch=master&job=Environment%3A+tbs_arch%3Dx64%2C+tbs_tools%3Dmsvc14%2C+tbs_static_runtime%3D0)
 
-Note: This program does nothing famous. It just pops up a C++/Qt5 desktop UI. This shall work cross platform. It's meant to be an example for a DevOps-driven desktop UI development. That's its only use case.
+Note: This program does nothing famous. It just pops up a C++/Qt5 desktop UI which shall work cross platform. It's meant to be an example for a DevOps-driven desktop UI development. That's its only use case.
 
 ## Build Dependencies
 To successfully build on debian based OS:
@@ -55,7 +55,7 @@ Note: Shall also work with other Qt or MSVC versions ..
 Note: On windows use ```jom``` instead of ```make```
 
 ## Versioning
-Cuteproject uses semantic versioning. Git tags on the master branch are used to mark specific versions. Git tags must have the form ```1.2.3``` (note: no prefix ```v```). So github automatically creates releases. To automate artifacts versioning the ```pkgs/version.sh``` script utilizes ```git describe --long``` to create semantic version numbers.
+Cuteproject uses semantic versioning. Git tags on the master branch are used to mark specific versions. Git tags must have the form **1.2.3** (note: no prefix **v**). So github automatically creates releases. To automate artifacts versioning the ```pkgs/version.sh``` script utilizes ```git describe --long``` to create semantic version numbers.
 
 ## Packaging
 
@@ -74,20 +74,20 @@ Development and testing is mainly focused on linux. Windows and Mac OS X are add
 
 The following operating systems get triggered continuously:
 
-Gitlab
+**Gitlab** (```git push``` triggered + weekly) :: Artifact = [.deb &  .AppImage]
 - Ubuntu:devel (build & test)
 - Ubuntu:rolling (build & test)
 - Ubuntu:latest (build, test & deploy, ++[lcov](http://ltp.sourceforge.net/coverage/lcov.php))
 - Ubuntu:trusty (build, test & deploy)
 - Ubuntu:xenial (build, test & deploy)
 
-Travis
+**Travis** (```git push``` triggered) :: Artifact = Apple Disk Image [.dmg]
 - Ubuntu:trusty (gcc -> build & test, ++[codecov](https://codecov.io/gh/mxklb/cuteproject))
 - Ubuntu:trusty (clang -> build & test, ++[codecov](https://codecov.io/gh/mxklb/cuteproject))
 - Mac OS X (gcc -> build, test & deploy)
 - Mac OS X (clang -> build, test & deploy)
 
-AppVoyer
+**AppVoyer** (```git push``` triggered) :: Artifact = Windows Executable [.exe]
 - Windows x64 (Visual Studio -> build & deploy)
 - Windows x64 (MinGW -> failing!)
 
