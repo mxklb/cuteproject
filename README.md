@@ -11,14 +11,15 @@ Implemented as one app/executable linked to multiple libs (modules).
 [![Build status](https://ci.appveyor.com/api/projects/status/e4voihnpbh67ejm4/branch/master?svg=true)](https://ci.appveyor.com/project/mxklb/cuteproject/branch/master)
 [![GitHub license](https://img.shields.io/badge/MIT-license-blue.svg)](https://raw.githubusercontent.com/mxklb/cuteproject/master/LICENSE)
 
-This is a C++/Qt5 example with automated unit test execution ([catch](https://github.com/philsquared/Catch)). Tests are implemented in executables (subdirs) which get executed during compilation - compilation fails if one of these tests fail. This is the ideal precondition for test driven development. When using gcc, local [lcov](http://ltp.sourceforge.net/coverage/lcov.php) test coverage report generation is suported. Semantic versioning combined with continuous deployments is build on top while using free continuous integration services ([travis](https://travis-ci.org/), [gitlab](https://about.gitlab.com/product/continuous-integration/) & [appvoyer](https://www.appveyor.com/)) for open source development.
+This is a C++/Qt5 example with automated unit test execution ([catch](https://github.com/philsquared/Catch)). Tests are implemented in executables (subdirs) which are executed during compilation automatically, compilation fails a test fails. This is the ideal precondition for test driven development. When using gcc, local [lcov](http://ltp.sourceforge.net/coverage/lcov.php) test coverage report generation is supported. Semantic versioning combined with continuous artifact deployment is build on top while using free continuous integration services ([travis](https://travis-ci.org/), [gitlab](https://about.gitlab.com/product/continuous-integration/) & [appvoyer](https://www.appveyor.com/)) for open source development.
 
 This project contains examples for:
 - automated test execution with qmake (local)
 - test coverage report creation with lcov (local)
+- semantic versioning using git tags (local & CI)
 - cross platform packaging (deb, AppImage, dmg & exe)
 - cross platform CI builds (linux, macOS & windows)
-- continuous artifact & release deployments (CI/CD)
+- continuous artifacts & release deployment (CI/CD)
 
 Download latest development version here:
 - [cuteproject-linux.x86_64.AppImage](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=appimage_latest)
@@ -69,12 +70,12 @@ This project contains scripts for automated packaging. All scripts are tested un
 - ```pkgs/appimage.sh``` creates an .AppImage
 - ```pkgs/macOS.sh``` creates a .dmg image
 
-Windows packaging is actually only implemented within .appvoyer.yml!
+Windows packaging is actually only implemented within *.appvoyer.yml*!
 
 Note: Refer to the CI configurations to check detailed packaging information & dependencies.
 
 ## CI/CD Configuration
-Development and testing is mainly focused on linux. Windows and Mac OS X are additionally used to verify builds and to make deployments. There are three different CI platforms configured ([travis](https://travis-ci.org/), [gitlab](https://about.gitlab.com/product/continuous-integration/) & [appvoyer](https://www.appveyor.com/)). The project always builds on linux, windows and Mac OS X. Artifacts for these systems are continuously deployed.
+Development and testing is mainly focused on linux. Windows and Mac OS X are additionally used to verify builds and to make deployments. There are three different CI platforms configured for this purpose ([gitlab](https://about.gitlab.com/product/continuous-integration/), [travis](https://travis-ci.org/) & [appvoyer](https://www.appveyor.com/)). The project always builds on linux, windows and Mac OS X. Artifacts for these systems are continuously deployed.
 
 The following build systems are triggered continuously:
 
