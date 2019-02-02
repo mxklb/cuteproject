@@ -69,6 +69,8 @@ release_build:
 ## 4 Build & Deploy debian packages
 .build_debian:
   stage: deploy
+  before_script:
+    - apt-get install -y git-buildpackage
   artifacts:
     paths:
       - cuteproject-*.deb

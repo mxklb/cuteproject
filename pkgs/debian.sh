@@ -44,6 +44,9 @@ cd deb/$pkgname-$version
 # Configure build without tests
 echo "catchTests=false" > globals.pri
 
+# Create changelog from git commits
+gbp dch
+
 # Initialize debian configurations
 dh_make --createorig --yes --single --email $eMail --copyright mit
 
