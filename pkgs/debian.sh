@@ -44,9 +44,6 @@ cd deb/$pkgname-$version
 # Configure build without tests
 echo "catchTests=false" > globals.pri
 
-# Create changelog from git commits
-gbp dch
-
 # Initialize debian configurations
 dh_make --createorig --yes --single --email $eMail --copyright mit
 
@@ -94,6 +91,13 @@ sed -i '32,37d' debian/copyright
 sed -i '4,9d' debian/copyright
 sed -i '6d' debian/copyright
 sed -i '3s/.*/Source: <https:\/\/github.com\/'$ghUser'\/'$ghProject'>/' debian/copyright
+
+# Create changelog from git commits
+authorflag=$(grep -h "$eMail" debian/changelog)
+sed -n '/Initial/!p' debian/changelog >> debian/tmplog
+sed -n '/'$eMail'/!p' debian/tmplog > debian/changelog
+../../changelog.sh >> debian/changelog
+printf "\n$authorflag" >> debian/changelog
 
 # Build the package
 dpkg-buildpackage -b -rfakeroot -us -uc -tc
