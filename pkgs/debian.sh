@@ -98,6 +98,7 @@ sed -n '/Initial/!p' debian/changelog >> debian/tmplog
 sed -n '/'$eMail'/!p' debian/tmplog > debian/changelog
 ../../changelog.sh >> debian/changelog
 printf "\n$authorflag" >> debian/changelog
+rm debian/tmplog
 
 # Build the package
 dpkg-buildpackage -b -rfakeroot -us -uc -tc
