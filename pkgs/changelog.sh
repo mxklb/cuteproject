@@ -10,7 +10,7 @@ git tag -l | sort -V | tac | while read TAG ; do
     GIT_PAGER=cat git log --no-merges --format="  * %s%n" $TAG..$NEXT
     NEXT=$TAG
 done
-FIRST=$(git tag -l --sort=v:refname | head -1)
+FIRST=$(git tag -l | sort -V | head -1)
 echo
 printf "\n  * RELEASE v$FIRST\n\n"
 GIT_PAGER=cat git log --no-merges --format="  * %s%n" $FIRST
