@@ -6,7 +6,7 @@ project="cuteproject"
 
 # Create changelog since lastest tag/release
 gittag=$(git describe --abbrev=0 --tags)
-hashes=($(git log --no-merges --format="%h" $gittag..HEAD))
+hashes=($(git log --format="%h" $gittag..HEAD))
 count=${#hashes[@]}
 
 IFS='.' read -a versions <<< "$gittag"
