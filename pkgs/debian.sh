@@ -53,6 +53,7 @@ cp ../app/control debian
 cp ../app/menu debian
 cp ../app/rules debian
 cp ../app/dirs debian
+cp ../app/changelog debian
 
 # Prepare the $pkgname.desktop file
 sed -i 's/M.m/'$version'/g' $pkgname.desktop
@@ -81,6 +82,7 @@ sed -i 's/myapp/'$pkgname'/g' debian/rules
 # Set proper rights
 #chmod -R -x+X *
 chmod -x debian/$pkgname-$majver.install
+chmod -x debian/changelog
 chmod -x debian/control
 chmod +x debian/rules
 chmod -x debian/menu
@@ -91,6 +93,12 @@ sed -i '32,37d' debian/copyright
 sed -i '4,9d' debian/copyright
 sed -i '6d' debian/copyright
 sed -i '3s/.*/Source: <https:\/\/github.com\/'$ghUser'\/'$ghProject'>/' debian/copyright
+
+# Append latest commits to changelog
+../changelog.sh >> debian/tmplog
+cat debian/changelog >> debian/tmplog
+cat debian/tmplog > debian/changelog
+rm debian/tmplog
 
 # Build the package
 dpkg-buildpackage -b -rfakeroot -us -uc -tc
