@@ -1,514 +1,67 @@
+cuteproject-1.0 (6-0) unstable; urgency=medium
 
+  * RELEASE v1.0.6
+
+  * Added support for debain packaging changelogs
+
+ -- mxklb <mxklb@protonmail.com>  Mon, 04 Feb 2019 21:11:04 +0100
 
 
 cuteproject-1.0 (5-0) unstable; urgency=medium
 
- * RELEASE v1.0.5
+  * RELEASE v1.0.5
 
- * Corrected artifacts link in README
+  * Updated documentations
 
- * Restrict gitlab-ci tags build to only run on master
+  * Refactored CI config & packaging scripts
 
- * Corrrected appvoyer windows build artifact link
+ -- mxklb <mxklb@protonmail.com>  Sat, 30 Jan 2019 22:55:58 +0100
 
- * Added missing jobname to windows matrix builds
 
- * Use gitlab ci release build stage for git tags
+cuteproject-1.0 (4-0) unstable; urgency=medium
 
- * Remove debian build generalization & corrected mail
+  * RELEASE v1.0.4
 
- * CI debug commit, test trusty debian deployment
+  * Minor CI build changes
 
- * CI debug commit, testing trusty debian deployment
+ -- mxklb <mxklb@protonmail.com>  Sa, 12 Jan 2019 18:15:53 +0100
 
- * Changes debian ci-config script to USER=mxklb
 
- * Added special debian ci-config script
+cuteproject-1.0 (3-0) unstable; urgency=medium
 
- * Corrected some docs/links & gitlab-ci job names
+  * RELEASE v1.0.3
 
- * Refactored gitlab-ci config yml
+  * Minor CI build changes
 
- * Moved appimage deployment into gitlab-ci release stage
+ -- mxklb <mxklb@protonmail.com>  Sa, 12 Jan 2019 18:01:13 +0100
 
 
+cuteproject-1.0 (2-0) unstable; urgency=medium
 
- * RELEASE v1.0.4
+  * RELEASE v1.0.2
 
- * Removed gitlab ci release stage #9
+  * Minor CI build changes
 
- * Put git tags ci job release_appimage into deploy stage #9
+  * Corrected macOS versioning
 
+ -- mxklb <mxklb@protonmail.com>  Sa, 12 Jan 2019 17:12:06 +0100
 
 
- * RELEASE v1.0.3
+cuteproject-1.0 (1-0) unstable; urgency=medium
 
- * Added gitlab-release to automate releases on tags #9
+  * RELEASE v1.0.1
 
- * Removed python module for tag releases #9
+  * Improved AppImage versioning #9
 
+ -- mxklb <mxklb@protonmail.com>  Sa, 12 Jan 2019 03:08:57 +0100
 
 
- * RELEASE v1.0.2
+cuteproject-1.0 (0-0) unstable; urgency=medium
 
- * Added release stage to deploy releases for git tags #9
+  * RELEASE v1.0.0
 
- * Commented out macOS Info.plist qmake option #9
+  * Initial Release
 
- * Changed macOS qmake versioning #9
+  * Introduced versioning via git tags #9
 
-
-
- * RELEASE v1.0.1
-
- * Qmake untagged version to 1.0.0 ++ improved appimage versioning (#9)
-
- * Added first bug/hot fix #9
-
-
-
- * RELEASE v1.0.0
-
- * Introduced versioning via git tags #9
-
- * Optimized appimage deployment
-
- * Reset appvoyer minGW and Qt, switched to arch 'x64' #13
-
- * Switched to Qt 5.6.3 & minGW 4.9 at appvoyer #13
-
- * Moved appvoyer 'git clean -fdX' into init script
-
- * Added qmake UI_DIR for win32 builds
-
- * Optimized .appvoyer init script #13
-
- * Removed appvoyer build: verbosity
-
- * Config win32 gcc build to be static #13
-
- * Changed appvoyer build verbosity #13
-
- * Removed vcvarsall.bat call for minGW builds #13
-
- * Added fixes for minGW build #13
-
- * Changed gcc loadlibs #13
-
- * Changed gcc lib extension to be dll #13
-
- * Added QMAKE_LFLAGS to win32 gcc compilation
-
- * Added WINDIR path for gcc build #13
-
- * Added switch to compile static windows lib only on msvc #13
-
- * Test effect of loadlibs on actual appvoyer gcc failure #13
-
- * Removed WINDIR in gcc win32 build #13
-
- * Added prefix lib to win32 gcc build LIBS+= #13
-
- * Changed PRE_TARGETDEPS for win32 gcc build #13
-
- * Added QMAKE_LFLAGS to win32 gcc build #13
-
- * Changed gcc loadlibs setup #13
-
- * Added qmake message for win32 loadlibs #13
-
- * Changed allow failures for win32-g++ builds #13
-
- * Changed allow failures for win32-g++ builds #13
-
- * Added allow failures for win32-g++ builds #13
-
- * Removed lib prefix of PRE_TARGETDEPS for win32-g++ build #13
-
- * Changed qmake linker flags for win32-g++ build #13
-
- * Removed extra lib* in win32-g++ LIBS & PRE_TARGETDEPS #13
-
- * Added QMAKESPEC=win32-g++ for windows mingw build #13
-
- * Fixed missing line in loadlibs.pri (unix build error)
-
- * Changed PATH to contain C:\Qt\Tools\mingw530_32\bin #13
-
- * Changed C:\MinGW\bin to --> C:\Qt\Tools\mingw530_32\bin #13
-
- * Added C:\MinGW\bin to PATH again #13
-
- * Removed C:\MinGW\bin from PATH #13
-
- * Changed lib extention for gcc build #13
-
- * Try 8419{LIBNAME}.8419{LIB_EXTENSION} for gcc build #13
-
- * Added special gcc switch for win32 build #13 -> LIB_EXTENSION = lib
-
- * Changed mingw build to tbs_arch: x32 #13
-
- * Changed mingw build to tbs_static_runtime: 0 #13
-
- * Set branch osx-deploy to be ignored by appvoyer #13
-
- * Added missing include <QIcon>
-
- * Added build steps for msvc14 & mingw at appvoyer #13
-
- * Added corrections for win32 gcc/msvc compilation #13
-
- * Resized background png to 512x512 px
-
- * Optimized and linked AppImage artifact #14
-
- * Added missing libfuse for AppImage packaging #14
-
- * Removed unknown QT module svg
-
- * Added AppImage creation to gitlab-ci deploy stage #14
-
- * Added release build stage without test to gitlab ci
-
- * Added release build stage without test to gitlab ci
-
- * Added initial AppImage packaging script #14
-
- * Changed macdeployqt verbosity=2 added open -always-overwrite
-
- * Set debug verbosity for macdeployqt and -a to cp commands
-
- * Changed macdeployqt fix to grep for 'Qt' instead of 'qt5'
-
- * Removed  --no-compiler-runtime in windeployqt
-
- * Added windows build instructions
-
- * Corrected windows binary download link
-
- * Added cuteproject.windows_x86.zip link and optimized zip file creation #5
-
- * Added missing jom clean build step #5
-
- * Added -r to the zip archive artifacts #5
-
- * Create zip archive containing build artifacts #5
-
- * Changed artifact to contain full build folder #5
-
- * Added windeployqt and another dumpbin exe afterwards #5
-
- * Another try to set dumpbin executable path #5
-
- * Changed dumpbin executable path #5
-
- * Use dumpbin instead of depends for dll usage detection #5
-
- * Added BUILD_TYPE=release/debug generalization #5
-
- * Switched back to msvc2015 compiler #5
-
- * Added vcvarsall.bat call to appvoyers init phase #5
-
- * Try minGW build #5
-
- * Disable coverage compiler flags for msvc builds #5
-
- * Switched to debug build and changed coverage flags #5
-
- * Switched form ls to Get-ChildItem to list artifacts #5
-
- * Use explicit string in ls -filter #5
-
- * Changed file type filter to show more artifacts #5
-
- * Refactored win32 specific qmake test & lib setup #5
-
- * Simplified windows release/debug directory detection #5
-
- * Reactivated windows tests execution #5
-
- * Corrected OS detection in test executables
-
- * Added recruse exe file listing #5
-
- * Activated tests execution for windows CI builds #5
-
- * Opimized some texts ..
-
- * Opimized some texts ..
-
- * Reset accidently changed catchTests=true
-
- * Added macOS .app icon and fixed macdeployqt issue #10
-
- * Substituted CONFIG += 'console' with 'shared' for unix builds
-
- * Cleaned up faulty macOS INCLUDEPATH statement
-
- * Corrected load lib OS (win32, macx, linux) detection #5
-
- * Make libs unix template 'console' instead of 'shared' #5
-
- * Optimized win32 binary lib artifacts path / linkage #5
-
- * Fixed library extension win32 selection #5
-
- * Opimized library extension selection #5
-
- * Always force lib extension to be .lib on windows #5
-
- * Refactored win32 library creation/linkage #5
-
- * Force lib extension to be 'lib' on windows #5
-
- * Try build static libs on windows #5
-
- * Force lib extension to always be 'lib' on windows #5
-
- * Added directory file listing to see build artifacts #5
-
- * Another test to build on appvoyer #5
-
- * Switched to libs CONFIG += shared
-
- * Removed win32: CONFIG += dll #5
-
- * Changed LIB_EXTENSION to be dll #5
-
- * Added win32: CONFIG += dll #5
-
- * Added release dir to INCLUDPATH for windows builds #5
-
- * Added windows build status badge #5
-
- * Added separate linking path for win32 dll's #5
-
- * Changed catch test deactivation #5
-
- * Added missing ps: statement #5
-
- * Switched catch test execution config on windows #5
-
- * Removed catch test execution on windows #5
-
- * Added windows CI config .appveyor.yml #5
-
- * Added icns file as macOS alternative logo
-
- * Set UI background & random mumbers art animation
-
- * Fixed debian packaging rules #2
-
- * Corrected cuteproject SVG logo
-
- * debian package fix #2 due to target name change in #3
-
- * Added missing osx.dmg deployment step #3
-
- * Further improved readme text
-
- * Added osx deployment #3
-
- * Optimized documentation
-
- * Fixed debian artifacts deployment
-
- * Fixed debian packaging #2
-
- * Corrected debian package name #2
-
- * Added debain package build dependeny chrpath
-
- * Refactored some scripts & opimized debian packaging #2
-
- * Some minor clean ups
-
- * Removed catch C++ test framework dependency
-
- * Added debain package deployments for trusty & xenial
-
- * Optimized lcov report generation
-
- * Set ui title and improved signal slot connections
-
- * Updated catch test-framework to v1.9.7
-
- * Fixed wrong synrax in gitlab-ci
-
- * Moved catch.hpp to libs/extern
-
- * Make coverage badge a debug_tests job artifacts link
-
- * Added apt-get install wget
-
- * Added local install script for wkhtmltopdf
-
- * Added virtual xserver xvfb for pdf rendering with wkhtmltopdf
-
- * Added script for lcov coverage report generation
-
- * Optimized readme
-
- * Changed deb package name & added download link to README (#8)
-
- * Fixed code coverage compilation flags
-
- * Removed .qmake.conf -> added globals.pri & added gitlab-ci deploy stage
-
- * Slightly optimized texts
-
- * Added tdd buzzword
-
- * Added license badge
-
- * Added github issues link for contribution
-
- * Further optimized documentation
-
- * Added gitlab-ci config and readme badges
-
- * Removed automated pri file creation for custom libs
-
- * Generalized app.install to always use all .so files in libs folder (#2)
-
- * Added widget (UI) to the app (#6)
-
- * Initial commit for debian package deployment (#2)
-
- * Added make install feature for linux OS
-
- * Enabled code coverage compilation with clang (#4)
-
- * Renamed generated hidden files .lib.pri -> lib.pri
-
- * Clean up some artifacts
-
- * Removed on test to see/verify coverage changes
-
- * Removed coverage from the tests
-
- * Corrected build order using app..tests dependencies
-
- * Optimized some documentations
-
- * Added lib.pri generation for loadlibs optimization
-
- * Added gdb dependecy due to /bin/sh: 1: gdb: not found on travis
-
- * Reintegrated catch dependency for linux
-
- * Added gdb to apt-get travis config
-
- * Removed obsolete apt-get dependency for catch.hpp
-
- * Replaced explicit setup of SRC_DIR with _PRO_FILE_PWD_
-
- * Renamed tests.pri -> test.pri
-
- * Slightly changed docs
-
- * Always include catch.hpp from repo instead of OS
-
- * Changed travis to always build debug versions
-
- * Added catchTest to qmake.conf to be used global in .pro/.pri-files
-
- * Only compile with gcov flags in debug mode
-
- * Added some comments and fixed rpath to be absolute
-
- * Added SRC_DIR variable to set includes paths absolute
-
- * Set absolute linker and include path while using relative rpath
-
- * Changed build steps to always use absolute path
-
- * Removed VPATH due to osx build failures
-
- * Changed gcov.sh to move coverage files to src/cpp location
-
- * Added gcov.sh script again for diagnostics only
-
- * Another test for codecov to succeed ..
-
- * Added parameter -p and -G to codecov.io/bash
-
- * Added pip module codecov
-
- * Fixed call to gcov.sh script in travis config
-
- * Removed one test and added gcov.sh script
-
- * Added wildcard to codecov search path
-
- * Changed codecov bash execution to use
-
- * Changed codecov bash execution to only include . path
-
- * Re-added missing testcase and changed codecov bash execution
-
- * Test commit to learn more about codecov coverage
-
- * Added -g /usr/include/ as argument to codecov bash script
-
- * Added some test output to after success
-
- * Removed libs/codecov.sh
-
- * Centralized gcov compiler flag within gconv.pri
-
- * Added coverage flags to libs and introduced codecov.yml
-
- * Added -r --relative-only option to gcov in codecov script
-
- * Fixed codecov.sh script to run gcov properly
-
- * Check code coverage only on linux os
-
- * Removed gcov-5 ubuntu package using std gcov
-
- * Added debug flag to tests and missing gconv-5 trusty package
-
- * Fixed path to codecov.sh in travis build
-
- * Added codecov script to catch coverage results
-
- * Removed coverage flag for libs and added badge to readme
-
- * Compile with -coverage flag only on unix and not osx
-
- * Added -coverage C++ flag and codecov.io trigger after_success
-
- * Refactored project, reduce dublicated qmake code
-
- * Changed osx lib handling using osx frameworks
-
- * Fixed catch.hpp header inclusion
-
- * Add catch.hpp test header if not in system
-
- * Changed travis config to build on linux & osx
-
- * Added travis build matrix to build on linux & osx
-
- * Moved build state info in the README from buttom to top
-
- * Added some build instructions and travis build status
-
- * Changed travis build config to build on 14.04 (trusty)
-
- * Fixed travis config add ppa to enter press
-
- * Changed travis config to use ppa to install qt5
-
- * Changed travis qt5 install apt-get
-
- * Added travis CI build setup
-
- * Initial commit
-
- * Initial commit
-
--- mxklb <dev@xamblak.de>  Wed, 30 Jan 2019 23:21:28 +0100
+ -- mxklb <mxklb@protonmail.com>  Sa, 12 Jan 2019 02:24:37 +0100
