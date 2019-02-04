@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author:Andrey Nikishaev
-git tag -l --sort=v:refname | tac | while read TAG ; do
+git tag -l | sort -V | tac | while read TAG ; do
     echo
     if [ $NEXT ];then
         printf "\n  * RELEASE v$NEXT\n\n"
