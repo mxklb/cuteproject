@@ -98,20 +98,23 @@ build_trusty_latest:
 # Continuous deploy debian packages
 .deploy_latest:
   stage: deploy
-  script:
-    - chmod +x pkgs/bintray.sh
-    - pkgs/bintray.sh debian $BINTRAY_API_KEY
   only:
     - artifactory-#15
     - master
 
 deploy_xenial_latest:
   extends: .deploy_latest
+  script:
+    - chmod +x pkgs/bintray.sh
+    - pkgs/bintray.sh xenial $BINTRAY_API_KEY
   dependencies:
     - build_xenial_latest
 
 deploy_trusty_latest:
   extends: .deploy_latest
+  script:
+    - chmod +x pkgs/bintray.sh
+    - pkgs/bintray.sh trusty $BINTRAY_API_KEY
   dependencies:
     - build_trusty_latest
 
