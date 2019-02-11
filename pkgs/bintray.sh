@@ -30,8 +30,7 @@ if [ "$1" == "debian" ]; then
   OS=$(lsb_release -c --short)
 
   DISTRIBUTIONS="$OS"
-  DEBIAN_FILE=$(ls deb/*.deb)
-  DEBIAN_FILE_PATH=$(echo ${DEBIAN_FILE%/*})
+  DEBIAN_FILE=$(ls ../*.deb)
   DEBIAN_FILE_NAME=$(echo ${DEBIAN_FILE##*/})
 
   PACKAGE="$REPO-$OS"

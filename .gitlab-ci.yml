@@ -73,9 +73,6 @@ release_build:
   artifacts:
     paths:
       - cuteproject-*.deb
-  cache:
-    paths:
-      - pkgs/deb/
 
 build_xenial_latest:
   extends: .build_debian
@@ -101,6 +98,8 @@ build_trusty_latest:
 # Continuous deploy debian packages
 .deploy_latest:
   stage: deploy
+  before_script:
+    - apt-get install lsb-release
   script:
     - chmod +x pkgs/bintray.sh
     - pkgs/bintray.sh debian
