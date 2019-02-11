@@ -2,7 +2,7 @@
 # This script publishes artifacts from gitlab-ci to bintray.
 # Depending on the package type it pushes to different repos.
 # Supported package types are: debian & appimage
-# Debain upload example: ./bintray.sh debian
+# Debain upload example: ./bintray.sh debian KEY
 
 pushd `dirname $0` > /dev/null
 scriptPath=`pwd`
@@ -11,7 +11,7 @@ cd "$scriptPath"
 
 if [ -z "$1" ]; then
   echo "Package type parameter missing!"
-  echo " Try: bintray.sh debian|appimage|.."
+  echo " Try: bintray.sh debian|appimage|.. BINTRAY_API_KEY"
   exit 0
 fi
 
@@ -19,7 +19,7 @@ fi
 USER="mxklb"
 COMPANY="mx-klb"
 REPO="cuteproject"
-API_KEY="$BINTRAY_API_KEY"
+API_KEY="$2"
 
 # Upload debian artifacts to bintray
 if [ "$1" == "debian" ]; then
@@ -27,7 +27,7 @@ if [ "$1" == "debian" ]; then
   ARCHITECTURES="amd64"
 
   # Detect ubuntu codename
-  UBUNTU_CODENAME=$(cat /etc/os-release | grep UBUNTU_CODENAME)
+  UBUNTU_CODENAME=$(cat /etc/lsb-release | grep DISTRIB_CODENAME)
   OS=$(echo ${UBUNTU_CODENAME##*=})
 
   DISTRIBUTIONS="$OS"
@@ -38,8 +38,6 @@ if [ "$1" == "debian" ]; then
   VERSION=$(bash ./version.sh)
   TARGET="pool/c/$REPO-${VERSION}_$OS"
   TARGET_PATH="$TARGET/$DEBIAN_FILE_NAME"
-
-  echo "$DISTRIBUTIONS $DEBIAN_FILE_NAME $PACKAGE $VERSION $TARGET_PATH"
 
   curl -T $DEBIAN_FILE -u${USER}:${API_KEY} "https://api.bintray.com/content/$COMPANY/$REPO/$PACKAGE/$VERSION/$TARGET_PATH;deb_distribution=$DISTRIBUTIONS;deb_component=$COMPONENTS;deb_architecture=$ARCHITECTURES;publish=1"
 # Upload appimage artifacts to bintray
