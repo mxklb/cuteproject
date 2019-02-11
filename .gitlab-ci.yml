@@ -4,6 +4,7 @@ image: mxklb/docker-qt5-deb
 stages:
 - tests
 - build
+- package
 - deploy
 - release
 
@@ -66,9 +67,9 @@ release_build:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
 
-## 4 Build & Deploy debian packages
+## 4 Build debian packages
 .build_debian:
-  stage: deploy
+  stage: package
   artifacts:
     paths:
       - cuteproject-*.deb
@@ -97,7 +98,7 @@ build_trusty_latest:
   artifacts:
     name: "cuteproject-trusty_amd64"
 
-# Continuous deployments
+# Continuous deploy debian packages
 .deploy_latest:
   stage: deploy
   script:
