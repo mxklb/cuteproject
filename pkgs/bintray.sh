@@ -39,6 +39,8 @@ if [ "$1" == "debian" ]; then
   TARGET="pool/c/$REPO-${VERSION}_$OS"
   TARGET_PATH="$TARGET/$DEBIAN_FILE_NAME"
 
+  echo "$DISTRIBUTIONS $DEBIAN_FILE_NAME $PACKAGE $VERSION $TARGET_PATH"
+
   curl -T $DEBIAN_FILE -u${USER}:${API_KEY} "https://api.bintray.com/content/$COMPANY/$REPO/$PACKAGE/$VERSION/$TARGET_PATH;deb_distribution=$DISTRIBUTIONS;deb_component=$COMPONENTS;deb_architecture=$ARCHITECTURES;publish=1"
 # Upload appimage artifacts to bintray
 elif [ "$1" == "appimage" ]; then
