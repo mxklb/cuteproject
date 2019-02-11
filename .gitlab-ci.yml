@@ -72,7 +72,7 @@ release_build:
   stage: package
   artifacts:
     paths:
-      - *.deb
+      - ./*.deb
 
 build_xenial_latest:
   extends: .build_debian
