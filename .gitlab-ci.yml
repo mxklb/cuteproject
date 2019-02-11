@@ -98,8 +98,6 @@ build_trusty_latest:
 # Continuous deploy debian packages
 .deploy_latest:
   stage: deploy
-  before_script:
-    - apt-get install lsb-release
   script:
     - chmod +x pkgs/bintray.sh
     - pkgs/bintray.sh debian

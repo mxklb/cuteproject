@@ -27,7 +27,8 @@ if [ "$1" == "debian" ]; then
   ARCHITECTURES="amd64"
 
   # Detect ubuntu codename
-  OS=$(lsb_release -c --short)
+  UBUNTU_CODENAME=$(cat /etc/os-release | grep UBUNTU_CODENAME)
+  OS=$(echo ${UBUNTU_CODENAME##*=})
 
   DISTRIBUTIONS="$OS"
   DEBIAN_FILE=$(ls ../*.deb)
