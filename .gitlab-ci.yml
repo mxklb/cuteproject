@@ -110,7 +110,7 @@ build_trusty_latest:
 deploy_xenial_latest:
   extends: .deploy_latest
   dependencies:
-    - debian_xenial_latest
+    - build_xenial_latest
 
 deploy_trusty_latest:
   extends: .deploy_latest
