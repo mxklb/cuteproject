@@ -119,7 +119,7 @@ deploy_trusty_latest:
 
 # Release deployments
 debian_trusty_stable:
-  extends: .build_trusty_latest
+  extends: build_trusty_latest
   stage: release
   only:
     - tags
@@ -127,7 +127,7 @@ debian_trusty_stable:
     - /^(?!master).+@/
 
 debian_xenial_stable:
-  extends: .build_xenial_latest
+  extends: build_xenial_latest
   stage: release
   only:
     - tags
