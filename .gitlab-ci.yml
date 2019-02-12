@@ -145,10 +145,10 @@ debian_xenial_stable:
     - make
     - chmod +x pkgs/version.sh
     - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
-    - mv pkgs/cuteproject-* .
+    - mv pkgs/*.AppImage* .
   artifacts:
     paths:
-      - cuteproject-*
+      - ./*.AppImage*
     name: "cuteproject-x86_64"
 
 # Continuous deployment

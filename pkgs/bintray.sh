@@ -2,7 +2,7 @@
 # This script publishes artifacts from gitlab-ci to bintray.
 # Depending on the package type it pushes to different repos.
 # Supported package types are: trusty, xenial & appimage
-# Debain upload example: ./bintray.sh trusty KEY
+# Debain upload example: ./bintray.sh trusty BINTRAY_API_KEY
 
 pushd `dirname $0` > /dev/null
 scriptPath=`pwd`
@@ -11,7 +11,6 @@ cd "$scriptPath"
 
 if [ -z "$1" ]; then
   echo "Package type parameter missing!"
-  echo " Try: bintray.sh debian|appimage|.. BINTRAY_API_KEY"
   exit 0
 fi
 
