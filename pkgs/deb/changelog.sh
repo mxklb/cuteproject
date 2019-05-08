@@ -9,6 +9,11 @@ gittag=$(git describe --abbrev=0 --tags)
 hashes=($(git log --format="%h" $gittag..HEAD))
 count=${#hashes[@]}
 
+# Print nothing for tagged commits
+if (( $count == 0 )); then
+   exit 0
+fi
+
 IFS='.' read -a versions <<< "$gittag"
 
 for i in "${!hashes[@]}"; do
