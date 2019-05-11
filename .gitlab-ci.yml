@@ -8,27 +8,24 @@ stages:
 - release
 
 before_script:
-- apt-get update -y
-- apt-get install -y wget xvfb chrpath libfuse-dev
+- chmod +x gitlab.sh && ./gitlab.sh
 
 ## 1 Debug builds (++ test)
-.debug_build_with_tests:
-  stage: tests
-  except:
-    - tags
+.debug_compile: &debug_compile
   script:
     - qmake cuteproject.pro -r CONFIG+=debug
     - make
 
-debug_tests:
-  extends: .debug_build_with_tests
+.debug_build_with_tests:
+  stage: tests
+  <<: *debug_compile
+  except:
+    - tags
 
 # Debug build (++ test coverage)
 debug_tests_coverage:
   extends: .debug_build_with_tests
-  script:
-    - qmake cuteproject.pro -r CONFIG+=debug
-    - make
+  after_script:
     - gcovr -r . -e '.*extern.*' -e '.*moc_.*'
     - chmod +x lcov.sh && ./lcov.sh
     - mv coverage/*.pdf .
@@ -52,58 +49,52 @@ debug_tests_devel:
   allow_failure: true
 
 ## 2 Release build (++ tests)
-release_tests:
-  stage: tests
+.release_compile: &release_compile
   script:
     - qmake cuteproject.pro -r CONFIG+=release
     - make
+
+release_tests:
+  stage: tests
+  <<: *release_compile
 
 ## 3 Release build (no tests)
 release_build:
   stage: build
-  script:
+  <<: *release_compile
+  before_script:
+    - chmod +x gitlab.sh && ./gitlab.sh
     - echo "catchTests=false" > globals.pri
-    - qmake cuteproject.pro -r CONFIG+=release
-    - make
 
 ## 4 Build & Deploy debian packages
-.build_debian:
+.build_debian_pkg:
   stage: deploy
+  script:
+    - chmod +x pkgs/version.sh
+    - chmod +x pkgs/debian.sh && pkgs/debian.sh
+    - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     paths:
       - cuteproject-*.deb
 
-.build_debian_xenial:
-  extends: .build_debian
+# Continuous deployments
+debian_xenial_latest:
+  extends: .build_debian_pkg
   image: mxklb/docker-qt5-deb:xenial
-  script:
-    - chmod +x pkgs/version.sh
-    - chmod +x pkgs/debian.sh && pkgs/debian.sh
-    - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     name: "cuteproject-xenial_amd64"
 
-.build_debian_trusty:
-  extends: .build_debian
+debian_trusty_latest:
+  extends: .build_debian_pkg
   image: mxklb/docker-qt5-deb:trusty
-  script:
+  before_script:
+    - chmod +x gitlab.sh && ./gitlab.sh
     - export USER=$GITLAB_USER_LOGIN
-    - chmod +x pkgs/version.sh
-    - chmod +x pkgs/debian.sh && pkgs/debian.sh
-    - mv pkgs/deb/cuteproject-*.deb .
   artifacts:
     name: "cuteproject-trusty_amd64"
 
-# Continuous deployments
-debian_trusty_latest:
-  extends: .build_debian_trusty
-
-debian_xenial_latest:
-  extends: .build_debian_xenial
-
 # Release deployments
-debian_trusty_stable:
-  extends: .build_debian_trusty
+.release_deployment: &release_deployment
   stage: release
   only:
     - tags
@@ -111,21 +102,22 @@ debian_trusty_stable:
     - /^(?!master).+@/
 
 debian_xenial_stable:
-  extends: .build_debian_xenial
-  stage: release
-  only:
-    - tags
-  except:
-    - /^(?!master).+@/
+  extends: debian_xenial_latest
+  <<: *release_deployment
+
+debian_trusty_stable:
+  extends: debian_trusty_latest
+  <<: *release_deployment
 
 ## 5 Build & Deploy .AppImage's
 .build_appimage:
   stage: deploy
   image: mxklb/docker-qt5-deb:trusty
-  script:
+  <<: *release_compile
+  before_script:
+    - chmod +x gitlab.sh && ./gitlab.sh
     - echo "catchTests=false" > globals.pri
-    - qmake cuteproject.pro -r CONFIG+=release
-    - make
+  after_script:
     - chmod +x pkgs/version.sh
     - chmod +x pkgs/appimage.sh && pkgs/appimage.sh
     - mv pkgs/cuteproject-* .
@@ -141,8 +133,4 @@ appimage_latest:
 # Release deployment
 appimage_stable:
   extends: .build_appimage
-  stage: release
-  only:
-    - tags
-  except:
-    - /^(?!master).+@/
+  <<: *release_deployment
