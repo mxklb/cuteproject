@@ -6,7 +6,7 @@ Implemented as one app/executable linked to multiple libs (modules).
 
 [![Build Status](https://travis-ci.org/mxklb/cuteproject.svg?branch=master)](https://travis-ci.org/mxklb/cuteproject)
 [![codecov](https://codecov.io/gh/mxklb/cuteproject/branch/master/graph/badge.svg)](https://codecov.io/gh/mxklb/cuteproject)
-[![build status](https://gitlab.com/mxklb/cuteproject/badges/master/build.svg)](https://gitlab.com/mxklb/cuteproject/commits/master)
+[![build status](https://gitlab.com/mxklb/cuteproject/badges/master/pipeline.svg)](https://gitlab.com/mxklb/cuteproject/commits/master)
 [![coverage report](https://gitlab.com/mxklb/cuteproject/badges/master/coverage.svg)](https://gitlab.com/mxklb/cuteproject/builds/artifacts/master/download?job=debug_tests)
 [![Build status](https://ci.appveyor.com/api/projects/status/e4voihnpbh67ejm4/branch/master?svg=true)](https://ci.appveyor.com/project/mxklb/cuteproject/branch/master)
 [![GitHub license](https://img.shields.io/badge/MIT-license-blue.svg)](https://raw.githubusercontent.com/mxklb/cuteproject/master/LICENSE)
