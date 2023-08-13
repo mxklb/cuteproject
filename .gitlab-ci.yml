@@ -19,8 +19,9 @@ before_script:
 .debug_build_with_tests:
   stage: tests
   <<: *debug_compile
-  except:
-    - tags
+  rules:
+    # don't run on tags
+    - if: $CI_COMMIT_TAG == null
 
 # Debug build (++ test coverage)
 debug_tests_coverage:
@@ -96,10 +97,9 @@ debian_trusty_latest:
 # Release deployments
 .release_deployment: &release_deployment
   stage: release
-  only:
-    - tags
-  except:
-    - /^(?!master).+@/
+  rules:
+    # run only on tags
+    - if: $CI_COMMIT_TAG
 
 debian_xenial_stable:
   extends: debian_xenial_latest
@@ -112,7 +112,7 @@ debian_trusty_stable:
 ## 5 Build & Deploy .AppImage's
 .build_appimage:
   stage: deploy
-  image: mxklb/docker-qt5-deb:trusty
+  image: mxklb/docker-qt5-deb:xenial
   <<: *release_compile
   before_script:
     - chmod +x gitlab.sh && ./gitlab.sh
